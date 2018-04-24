@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bookSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: String, required: true },
-  synopsis: String,
-  date: { type: Date, default: Date.now }
+const userSchema = new Schema({
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true}
 });
 
-const Book = mongoose.model("Book", bookSchema);
+const Login = mongoose.model("Login", userSchema);
 
-module.exports = Book;
+module.exports = Login;
