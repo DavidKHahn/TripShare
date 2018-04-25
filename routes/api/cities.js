@@ -2,10 +2,10 @@ const router = require("express").Router();
 
 
 // example 
-const citiesController = require("../../controllers/citiesController");
+const citiesController = require("../../controllers/citiesController.js");
 
 // Code router routes to controllers
-router.route("/create")
+router.route("/api/create")
 .get(citiesController.findAll)
 .post(citiesController.create);
 
@@ -15,9 +15,5 @@ router
 .get(citiesController.findById)
 .put(citiesController.update)
 .delete(citiesController.remove);
-
-
-
-
 
 module.exports = router;

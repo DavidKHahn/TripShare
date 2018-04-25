@@ -5,6 +5,6 @@ const citiesRoutes = require("./cities");
 // routes from users.js
 router.use("/users", userRoutes);
 
-router.use("/create", citiesRoutes);
+router.use(citiesRoutes);
 
 module.exports = router;
