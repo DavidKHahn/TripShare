@@ -1,13 +1,18 @@
 const db = require("../models");
 
-// takes the models to access the database
-// Example
-// module.exports = {
-//     findAll: function(req, res) {
-//       db.Article
-//         .find(req.query)
-//         .sort({ date: -1 })
-//         .then(dbModel => res.json(dbModel))
-//         .catch(err => res.status(422).json(err));
-//     }
-// }
+// Defining methods for the booksController
+module.exports = {
+  findById: function(req, res) {
+    db.User
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  create: function(req, res) {
+    console.log("this is users controller: ", JSON.stringify(req.body))
+    db.User
+      .create(req.body.userData)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+};

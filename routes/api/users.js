@@ -1,15 +1,16 @@
 const router = require("express").Router();
 
 
-// example const usersController = require("../../controllers/usersController");
+const usersController = require("../../controllers/usersController");
 
 // Code router routes to controllers
 // example// Matches with "/api/articles"
-// router.route("/")
+router.route("/api/users/:id")
 // .get(usersController.findAll)
-// .post(usersController.create);
+.post(usersController.create)
+.get(usersController.findById)
 
-// // Matches with "/api/users/:id"
+// Matches with "/api/users/:id"
 // router
 // .route("/:id")
 // .get(usersController.findById)

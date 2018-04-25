@@ -15,9 +15,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log("this is cities controller: " + req.body)
+    console.log("this is cities controller: ", JSON.stringify(req.body))
     db.City
-      .create(req.body)
+      .create(req.body.cityData)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

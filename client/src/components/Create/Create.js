@@ -11,13 +11,20 @@ import MapboxGeocoder from 'mapbox-gl-geocoder'
 
 class Create extends React.Component {
 
+    componentWillUnmount() {
+        console.log('unmount')
+    }
+
     componentDidMount() {
+
+        console.log('component is mounted')
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJoZWVlZSIsImEiOiJjamdjeXZsaGswNmk0MzJtYWM5MXJxdWhlIn0.YLMP3IJkPnF-y8Yv0A8Udg';
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
             center: [-79.4512, 43.6568],
-            zoom: 5
+            zoom: 2
         });
 
         var geocoder = new MapboxGeocoder({
@@ -47,7 +54,6 @@ class Create extends React.Component {
 
         // After the map style has loaded on the page, add a source layer and default
         // styling for a single point.
-        map.on('load', function () {
             // map.addSource('single-point', {
             //     "type": "geojson",
             //     "data": {
@@ -70,6 +76,8 @@ class Create extends React.Component {
             // makes a selection and add a symbol that matches the result.
             geocoder.on('result', function (ev) {
 
+                console.log("ev result", ev.result);
+
                 geojson.features.push({
                     type: 'Feature',
                     geometry: {
@@ -82,20 +90,22 @@ class Create extends React.Component {
                     }
                 })
 
+                var cityData = {
+                    location: ev.result.place_name,
+                    coordinates: ev.result.geometry.coordinates
+                }
+
+                API.saveCity({
+                    cityData
+                  })
+
                 geojson.features.forEach(function (marker) {
 
                     // create a HTML element for each feature
                     var el = document.createElement('div');
                     el.className = 'marker';
 
-                    var cityData = {
-                        location: marker.properties.description,
-                        coordinates: marker.geometry.coordinates
-                    }
-
-                    API.saveCity({
-                        cityData
-                      })
+                    
 
                     // make a marker for each feature and add to the map
                     new mapboxgl.Marker(el)
@@ -104,7 +114,6 @@ class Create extends React.Component {
                 });
 
             });
-        });
 
         var marker = document.getElementsByClassName('marker');
 
