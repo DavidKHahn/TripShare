@@ -15,7 +15,10 @@ constructor(props) {
     this.toggle = this.toggle.bind(this);
 
     this.state = {
-    toggle: false
+    toggle: false,
+    name: "",
+    description: "",
+    saved: []
     }
 }
 
@@ -24,6 +27,29 @@ toggle(event) {
     toggle: !prevState.toggle
     }));
 }
+
+handleInputChange = event => {
+    let value = event.target.value;
+    let name = event.target.name
+
+    this.setState({
+        [name]: value
+    });
+};
+
+handleSubmitForm = event => {
+    event.preventDefault();
+
+    var name = this.state.name;
+    var description = this.state.description;
+
+    API.savePlace(name, description)
+        .then(res => {
+            this.setState({
+                saved: res.data
+            })
+        })
+};
 
 render() {
     var modal = [];
@@ -36,14 +62,26 @@ render() {
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="name" type="text" className="validate"/>
+                                <input 
+                                    onChange={this.handleInputChange}
+                                    name="name"
+                                    id="name" 
+                                    type="text" 
+                                    className="validate"
+                                />
                                 <label for="name">Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="details" type="text" className="validate"/>
-                                <label for="details">Details</label>
+                                <input 
+                                    onChange={this.handleInputChange}
+                                    name="description"
+                                    id="=description" 
+                                    type="text" 
+                                    className="validate"
+                                />
+                                <label for="=description">Description</label>
                             </div>
                         </div>
                     </form>
