@@ -9,6 +9,7 @@
     "mapbox-gl-geocoder": "^2.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-materialize": "^2.2.0",
     "react-scripts": "1.0.14"
   },
   "scripts": {
