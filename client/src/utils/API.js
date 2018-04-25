@@ -15,6 +15,6 @@ export default {
   },
   // Saves a city to the database
   saveCity: function(cityData) {
-    return axios.post("/api/cities", cityData);
+    return axios.post("/create", cityData);
   }
 };
