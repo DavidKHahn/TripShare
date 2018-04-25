@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Create.css";
 import "./Map.css"
+import API from "../../utils/API";
 // import "./CreateFunction.js";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
@@ -8,7 +9,7 @@ import MapboxGeocoder from 'mapbox-gl-geocoder'
 
 
 
-class Create extends React.Component  {
+class Create extends React.Component {
 
     componentDidMount() {
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJoZWVlZSIsImEiOiJjamdjeXZsaGswNmk0MzJtYWM5MXJxdWhlIn0.YLMP3IJkPnF-y8Yv0A8Udg';
@@ -19,94 +20,124 @@ class Create extends React.Component  {
             zoom: 5
         });
 
-var geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
-});
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+        });
 
- var geojson = {
+        var geojson = {
             type: 'FeatureCollection',
             features: []
         };
 
         // add markers to map
-        geojson.features.forEach(function (marker) {
+        // geojson.features.forEach(function (marker) {
 
-            // create a HTML element for each feature
-            var el = document.createElement('div');
-            el.className = 'marker';
+        //     // create a HTML element for each feature
+        //     var el = document.createElement('div');
+        //     el.className = 'marker';
 
-            // make a marker for each feature and add to the map
-            new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map);
+        //     // make a marker for each feature and add to the map
+        //     new mapboxgl.Marker(el)
+        //         .setLngLat(marker.geometry.coordinates)
+        //         .addTo(map);
+        // });
+
+
+        map.addControl(geocoder);
+
+        // After the map style has loaded on the page, add a source layer and default
+        // styling for a single point.
+        map.on('load', function () {
+            // map.addSource('single-point', {
+            //     "type": "geojson",
+            //     "data": {
+            //         "type": "FeatureCollection",
+            //         "features": []
+            //     }
+            // });
+
+            // map.addLayer({
+            //     "id": "point",
+            //     "source": "single-point",
+            //     "type": "circle",
+            //     "paint": {
+            //         "circle-radius": 10,
+            //         "circle-color": "#007cbf"
+            //     }
+            // });
+
+            // Listen for the `geocoder.input` event that is triggered when a user
+            // makes a selection and add a symbol that matches the result.
+            geocoder.on('result', function (ev) {
+
+                geojson.features.push({
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: ev.result.geometry.coordinates
+                    },
+                    properties: {
+                        title: 'Mapbox',
+                        description: ev.result.place_name
+                    }
+                })
+
+                geojson.features.forEach(function (marker) {
+
+                    // create a HTML element for each feature
+                    var el = document.createElement('div');
+                    el.className = 'marker';
+
+                    var cityData = {
+                        location: marker.properties.description,
+                        coordinates: marker.geometry.coordinates
+                    }
+
+                    API.saveCity({
+                        cityData
+                      })
+
+                    // make a marker for each feature and add to the map
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(map);
+                });
+
+            });
         });
 
+        var marker = document.getElementsByClassName('marker');
 
-map.addControl(geocoder);
+        map.on('click', function (e) {
+            console.log("hello")
+            var features = map.queryRenderedFeatures(e.point, {
+                layers: ['background'] // replace this with the name of the layer
+            });
 
-// After the map style has loaded on the page, add a source layer and default
-// styling for a single point.
-map.on('load', function() {
-    // map.addSource('single-point', {
-    //     "type": "geojson",
-    //     "data": {
-    //         "type": "FeatureCollection",
-    //         "features": []
-    //     }
-    // });
+            if (!features.length) {
+                return;
+            }
 
-    // map.addLayer({
-    //     "id": "point",
-    //     "source": "single-point",
-    //     "type": "circle",
-    //     "paint": {
-    //         "circle-radius": 10,
-    //         "circle-color": "#007cbf"
-    //     }
-    // });
+            var feature = features[0];
 
-    // Listen for the `geocoder.input` event that is triggered when a user
-    // makes a selection and add a symbol that matches the result.
-    geocoder.on('result', function(ev) {
-
-        geojson.features.push({
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: ev.result.geometry.coordinates
-                },
-                properties: {
-                    title: 'Mapbox',
-                    description: ev.result.place_name
-                }
-            })
-
-            geojson.features.forEach(function (marker) {
-
-// create a HTML element for each feature
-var el = document.createElement('div');
-el.className = 'marker';
-
-// make a marker for each feature and add to the map
-new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .addTo(map);
-});
-
-    });
-});
+            var popup = new mapboxgl.Popup({ offset: [0, -15] })
+                .setLngLat(feature.geometry.coordinates)
+                .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+                .setLngLat(feature.geometry.coordinates)
+                .addTo(map);
+        });
     }
-   
-   render() {
-    return (
-        <div>
-            <div id='map'></div>
-            <script>
-                
-             </script>
-        </div>
-    )
-}
+
+    render() {
+        return (
+            <div>
+                <div id='map'></div>
+                <script>
+
+                </script>
+            </div>
+        )
+    }
 };
 
 

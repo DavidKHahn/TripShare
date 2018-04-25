@@ -16,3 +16,18 @@ body { margin:0; padding:0; }
     margin-left:25%;
 }
 
+.mapboxgl-canvas {
+    position: relative !important;
+    width: 100% !important;
+
+
+}
+
+#map {
+    width: 70% !important;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70% !important;
+    border-style: solid;
+}
+
