@@ -49,8 +49,6 @@ class Create extends React.Component {
             coordinates: this.state.coordinates
         }
 
-        console.log()
-
         API.saveCity({
             location: cityData.location,
             coordinates: cityData.coordinates
@@ -280,13 +278,13 @@ class Create extends React.Component {
 
         return (
             <div>
-                <Nav_Bar />
+                {/* <Nav_Bar /> */}
                 <div className='mapContainer'>
                     <div id='map'></div>
                     {modal}
                 </div>
                 <div>
-                    <a className="btn addBtn" onClick={this.handleFormSubmit}>Add City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>                   
+                    <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>                   
                 </div>
                 {!this.state.isHidden ? "" : <h4>{this.state.location}</h4>}
                 <DetailsCard />

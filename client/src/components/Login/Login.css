@@ -1,0 +1,24 @@
+.container  {
+    display: flex;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+  }
+  
+  .container{
+    margin-right: 33%;
+    margin-left: 33%;
+    margin-top: 5%;
+    width: 33%;
+  }
+
+  #input_0, #input_1 {
+      width: 100%;
+      max-width: 100%;
+
+  }
+
+  #appName {
+      text-align: center;
+  }

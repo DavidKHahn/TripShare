@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Create from "./components/Create";
-import FormModal from "./components/FormModal";
-import NavBar from "./components/NavBar"
+import Login from "./components/Login";
+
 
 
 
@@ -14,8 +14,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        {/* <Login /> */}
         <Create />
-        {/* <FormModal /> */}
       </div>
     );
   }

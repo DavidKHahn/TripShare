@@ -43,3 +43,7 @@ body { margin:0; padding:0; }
     margin-top: 550px;
 }
 
+.modal-content {
+    z-index: 1 !important;
+}
+

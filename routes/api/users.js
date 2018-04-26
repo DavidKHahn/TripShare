@@ -17,6 +17,11 @@ router.route("/api/users/:id")
 // .put(usersController.update)
 // .delete(usersController.remove);
 
+router.route("/api/user")
+// .get(usersController.findAll)
+.post(usersController.create)
+.get(usersController.findById)
+
 
 
 
