@@ -1,4 +1,5 @@
 module.exports = {
   City: require("./cities"),
-  User: require("./users")
+  User: require("./users"),
+  Detail: require("./details")
 };

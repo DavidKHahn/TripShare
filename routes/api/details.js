@@ -1,5 +1,5 @@
 var path = require("path");
-//var db = require("../models")
+var db = require("../../models")
 var multer = require('multer');
 const uuidv4 = require('uuid/v4');
 
@@ -31,11 +31,12 @@ const upload = multer({ storage });
   
 module.exports = function (app) {
     app.post('/save', upload.single('selectedFile'), (req, res) => {
-        console.log(req.body)
-        console.log(req.body.name)
-        console.log(req.body.description)
-        console.log(req.file)
-    
+        console.log(req.file.path)
+        db.Detail.create({
+          name: req.body.name,
+          description: req.body.description,
+          image: req.file.path
+        })
         
         /*
         We now have a new req.file object here. At this point the file has been saved
