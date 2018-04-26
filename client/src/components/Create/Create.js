@@ -8,20 +8,19 @@ import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
 import Nav_Bar from "../NavBar"
 
+
 const display = {
     display: 'block'
 };
 const hide = {
     display: 'none'
 };
-  
-
 
 class Create extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.toggle = this.toggle.bind(this);
+        this.toggle = this.toggle.bind(this);
 
         this.state = {
             toggle: false,
@@ -39,54 +38,67 @@ class Create extends React.Component {
         console.log('unmount')
     }
 
-    handleFormSubmit2 = event => {
+    handleFormSubmit = event => {
         console.log(this.state.location, this.state.coordinates);
         this.setState({
             isHidden: true
         })
-      };
 
-      toggle = event => {
+        let cityData = {
+            location: this.state.location,
+            coordinates: this.state.coordinates
+        }
+
+        console.log()
+
+        API.saveCity({
+            location: cityData.location,
+            coordinates: cityData.coordinates
+        })
+    };
+
+
+    toggle(event) {
         this.setState(prevState => ({
-        toggle: !prevState.toggle
+            toggle: !prevState.toggle
         }));
     }
-    
+
     handleInputChange = event => {
         let value = event.target.value;
         let name = event.target.name
-    
+
         this.setState({
             [name]: value
         });
     };
-    
+
     onChange = (e) => {
         const state = this.state;
-    
+
         switch (e.target.name) {
-        case 'selectedFile':
-            state.selectedFile = e.target.files[0];
-            break;
-        default:
-            state[e.target.name] = e.target.value;
+            case 'selectedFile':
+                state.selectedFile = e.target.files[0];
+                break;
+            default:
+                state[e.target.name] = e.target.value;
         }
-    
+
         this.setState(state);
     }
-      
+
     handleSubmitForm = (e) => {
         e.preventDefault();
         this.toggle();
         const { name, description, selectedFile } = this.state;
         let formData = new FormData();
-    
+
         formData.append('name', name)
         formData.append('description', description);
         formData.append('selectedFile', selectedFile);
-    
+
         API.saveDetails(formData).then((result) => {
-    
+
         })
     }
 
@@ -165,16 +177,11 @@ class Create extends React.Component {
                 }
             })
 
-            var cityData = {
-                location: ev.result.place_name,
-                coordinates: ev.result.geometry.coordinates
-            }         
-
             this.setState({
                 location: ev.result.place_name,
                 coordinates: ev.result.geometry.coordinates
             })
-            
+
             geojson.features.forEach((marker) => {
 
                 // create a HTML element for each feature
@@ -215,61 +222,62 @@ class Create extends React.Component {
     render() {
 
         var modal = [];
-    modal.push(
-        <div className="modal" style={this.state.toggle ? display : hide}>
-            <div className="modal-content">
-                <h4>{this.state.location}</h4>
-                <p>Enter Details</p>
-                <div className="row">
-                    <form className="col s12">
-                        <div className="row">
-                            <div className="input-field col s12">
-                                <input 
-                                    onChange={this.handleInputChange}
-                                    name="name"
-                                    id="name" 
-                                    type="text" 
-                                    className="validate"
-                                />
-                                <label for="name">Name</label>
+        modal.push(
+            <div className="modal" style={this.state.toggle ? display : hide}>
+                <div className="modal-content">
+                    <h4>Title of Place</h4>
+                    <p>Enter Details</p>
+                    <div className="row">
+                        <form className="col s12">
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.handleInputChange}
+                                        name="name"
+                                        id="name"
+                                        type="text"
+                                        className="validate"
+                                    />
+                                    <label for="name">Name</label>
+                                </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s12">
-                                <input 
-                                    onChange={this.handleInputChange}
-                                    name="description"
-                                    id="=description" 
-                                    type="text" 
-                                    className="validate"
-                                />
-                                <label for="description">Description</label>
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.handleInputChange}
+                                        name="description"
+                                        id="=description"
+                                        type="text"
+                                        className="validate"
+                                    />
+                                    <label for="description">Description</label>
+                                </div>
                             </div>
-                        </div>
-                        <div className="file-field input-field">
-                            <div className="btn">
-                                <span>File</span>
-                                <input 
-                                    type="file"
-                                    onChange={this.onChange}
-                                    name="selectedFile"
-                                />
+                            <div className="file-field input-field">
+                                <div className="btn">
+                                    <span>File</span>
+                                    <input
+                                        type="file"
+                                        onChange={this.onChange}
+                                        name="selectedFile"
+                                    />
+                                </div>
+                                <div className="file-path-wrapper">
+                                    <input
+                                        type="text"
+                                        className="file-path validate"
+                                    />
+                                </div>
                             </div>
-                            <div className="file-path-wrapper">
-                                <input 
-                                    type="text"
-                                    className="file-path validate" 
-                                />
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+                <div className="modal-footer">
+                    <a className="btn" onClick={this.handleSubmitForm}>Save</a>
                 </div>
             </div>
-            <div className="modal-footer">
-                <a className="btn" onClick={this.handleSubmitForm}>Save</a>
-            </div>
-        </div>
-    );
+        );
+
         return (
             <div>
                 <Nav_Bar />
@@ -278,9 +286,9 @@ class Create extends React.Component {
                     {modal}
                 </div>
                 <div>
-                <a className="btn addBtn" onClick={this.handleFormSubmit2}>Add City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>
+                    <a className="btn addBtn" onClick={this.handleFormSubmit}>Add City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>                   
                 </div>
-                {!this.state.isHidden ? ""  : <h4>{this.state.location}</h4>}
+                {!this.state.isHidden ? "" : <h4>{this.state.location}</h4>}
                 <DetailsCard />
             </div>
         )

@@ -31,7 +31,7 @@ const upload = multer({ storage });
   
 module.exports = function (app) {
     app.post('/save', upload.single('selectedFile'), (req, res) => {
-        console.log(req.file.path)
+        console.log("req file?", req.file.path)
         db.Detail.create({
           name: req.body.name,
           description: req.body.description,
