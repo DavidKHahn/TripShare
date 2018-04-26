@@ -24,11 +24,22 @@ body { margin:0; padding:0; }
 }
 
 #map {
-    width: 70% !important;
+    width: 100% !important;
     margin-left: auto;
     margin-right: auto;
     height: 70% !important;
     border-style: solid;
+    margin-top: 70px;
+    margin-bottom: 30px;
     
 }
+
+.mapContainer {
+    justify-content: space-between;
+    height: 475px !important;
+}
+
+/* .addBtn {
+    margin-right: 25px;
+} */
 

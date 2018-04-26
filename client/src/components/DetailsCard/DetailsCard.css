@@ -1,0 +1,12 @@
+.detailCard {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow: auto;
+}
+.detailBtns {
+    float: right;
+}
+
+#placeTitle {
+    margin-left: 75px;
+}
