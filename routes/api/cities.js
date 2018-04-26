@@ -9,6 +9,9 @@ router.route("/api/create")
 .get(citiesController.findAll)
 .post(citiesController.create);
 
+router.route("/userdata/:id")
+.get(citiesController.findDetailById);
+
 // Matches with "/api/users/:id"
 router
 .route("/api/cities/:id")

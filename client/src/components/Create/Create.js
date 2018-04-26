@@ -107,7 +107,15 @@ class Create extends React.Component {
         })
     }
 
+    getUserData() {
+        API.getUserData("5ae241d573b42f0a8973a28e").then((result) => {
+            console.log(result.data.details)
+
+        })
+    }
+
     componentDidMount() {
+        this.getUserData()
 
         console.log('component is mounted')
 
