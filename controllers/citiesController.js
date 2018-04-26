@@ -33,5 +33,17 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findDetailById: function(req, res) {
+    //console.log(req.params.id)
+    db.City.findById(req.params.id)
+      .populate("details")
+      .then(function(dbUserDetails) {
+        res.json(dbUserDetails)
+      })
+      .catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
   }
 };

@@ -16,6 +16,8 @@ const hide = {
     display: 'none'
 };
 
+let cityId = "";
+
 class Create extends React.Component {
 
     constructor(props) {
@@ -52,6 +54,8 @@ class Create extends React.Component {
         API.saveCity({
             location: cityData.location,
             coordinates: cityData.coordinates
+        }).then((result) => {
+            cityId = result.data._id
         })
     };
 
@@ -94,13 +98,22 @@ class Create extends React.Component {
         formData.append('name', name)
         formData.append('description', description);
         formData.append('selectedFile', selectedFile);
+        formData.append('cityId', cityId )
 
         API.saveDetails(formData).then((result) => {
 
         })
     }
 
+    getUserData() {
+        API.getUserData("5ae241d573b42f0a8973a28e").then((result) => {
+            console.log(result.data.details)
+
+        })
+    }
+
     componentDidMount() {
+        this.getUserData()
 
         console.log('component is mounted')
 
