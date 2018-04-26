@@ -31,11 +31,15 @@ const upload = multer({ storage });
   
 module.exports = function (app) {
     app.post('/save', upload.single('selectedFile'), (req, res) => {
-        console.log("req file?", req.file.path)
+        console.log("req file?", req.body)
         db.Detail.create({
           name: req.body.name,
           description: req.body.description,
           image: req.file.path
+        })
+        .then(function(dbDetail) {
+          
+          return db.City.findOneAndUpdate({_id: req.body.cityId}, { $push: { details: dbDetail._id } }, { new: true });
         })
         
         /*
