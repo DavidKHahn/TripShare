@@ -16,5 +16,8 @@ export default {
   // Saves a city to the database
   saveCity: function(cityData) {
     return axios.post("/api/create", cityData);
+  },
+  saveDetails: function(formData) {
+    return axios.post("/save", formData)
   }
 };

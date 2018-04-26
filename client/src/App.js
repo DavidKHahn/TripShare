@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Create />
+        {/* <Create /> */}
         <FormModal />
       </div>
     );

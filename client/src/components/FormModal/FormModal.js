@@ -19,7 +19,8 @@ constructor(props) {
     toggle: false,
     name: "",
     description: "",
-    saved: []
+    saved: [],
+    selectedFile: ""
     }
 }
 
@@ -38,19 +39,34 @@ handleInputChange = event => {
     });
 };
 
-handleSubmitForm = event => {
-    event.preventDefault();
+onChange = (e) => {
+    const state = this.state;
 
-    var name = this.state.name;
-    var description = this.state.description;
+    switch (e.target.name) {
+    case 'selectedFile':
+        state.selectedFile = e.target.files[0];
+        break;
+    default:
+        state[e.target.name] = e.target.value;
+    }
 
-    API.savePlace(name, description)
-        .then(res => {
-            this.setState({
-                saved: res.data
-            })
-        })
-};
+    this.setState(state);
+}
+  
+handleSubmitForm = (e) => {
+    e.preventDefault();
+    this.toggle();
+    const { name, description, selectedFile } = this.state;
+    let formData = new FormData();
+
+    formData.append('name', name)
+    formData.append('description', description);
+    formData.append('selectedFile', selectedFile);
+
+    API.saveDetails(formData).then((result) => {
+
+    })
+}
 
 render() {
     var modal = [];
@@ -82,25 +98,30 @@ render() {
                                     type="text" 
                                     className="validate"
                                 />
-                                <label for="=description">Description</label>
+                                <label for="description">Description</label>
                             </div>
                         </div>
-                    </form>
-                    <form action="#">
                         <div className="file-field input-field">
                             <div className="btn">
                                 <span>File</span>
-                                <input type="file"/>
+                                <input 
+                                    type="file"
+                                    onChange={this.onChange}
+                                    name="selectedFile"
+                                />
                             </div>
                             <div className="file-path-wrapper">
-                                <input className="file-path validate" type="text"/>
+                                <input 
+                                    type="text"
+                                    className="file-path validate" 
+                                />
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div className="modal-footer">
-                <a className="btn" onClick={this.toggle}>Save</a>
+                <a className="btn" onClick={this.handleSubmitForm}>Save</a>
             </div>
         </div>
     );
