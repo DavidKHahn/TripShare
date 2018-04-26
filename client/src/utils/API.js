@@ -21,7 +21,7 @@ export default {
     return axios.get("/api/users/" + id)
   },
   saveUser: function(userData) {
-    return axios.post("/api/user")
+    return axios.post("/api/user", userData)
   },
   saveDetails: function(formData) {
       return axios.post("/save", formData);

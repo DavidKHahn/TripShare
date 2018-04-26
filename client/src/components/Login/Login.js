@@ -46,7 +46,10 @@ class Login extends Component {
         console.log("userdata", userData)
 
         API.saveUser({
-            userData
+            name: userData.name,
+            email: userData.email,
+            username: userData.username,
+            password: userData.password
         }).then((result) => {
             console.log("result: ", result)
         })
@@ -104,7 +107,7 @@ class Login extends Component {
                             <Input onChange={this.handleInputChange} s={12} name="username" label="Username" placeholder="Username" />
                             <Input onChange={this.handleInputChange} name="password" type="password" label="password" s={12} />
                             <Input onChange={this.handleInputChange} name="email" type="email" label="Email" s={12} />
-                            <Button onClick={this.handleSubmitSignUp}>Create</Button>
+                            <Button onClick={this.handleSubmitSignUp} className="modal-action modal-close">Create</Button>
                         </Row>
                     </Modal>
                 </Card>
