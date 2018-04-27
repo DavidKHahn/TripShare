@@ -9,7 +9,7 @@ const Nav_Bar = props => (
     <Navbar brand='Vacation App' right>
         <NavItem onClick={() => console.log('test click')}><Link to={"/"}>Home</Link></NavItem>
         <NavItem href=''><Link to={"/create"}>Create</Link></NavItem>
-        <NavItem href=''>View</NavItem>
+        <NavItem href=''><Link to={"/view"}>View</Link></NavItem>
         <NavItem href=''>Account</NavItem>
     </Navbar>
 )
