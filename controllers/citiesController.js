@@ -18,7 +18,10 @@ module.exports = {
     console.log("this is cities controller: ", JSON.stringify(req.body))
     db.City
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        return db.User.findOneAndUpdate({}, { $push: { cities: dbModel._id } }, { new: true }); 
+        res.json(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

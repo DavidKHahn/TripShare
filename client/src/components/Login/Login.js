@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize"
 import Nav_Bar from "../NavBar"
 import { Link } from "react-router-dom";
+import randtoken from "rand-token";
 
 
 class Login extends Component {
@@ -14,7 +15,8 @@ class Login extends Component {
             name: "",
             email: "",
             username: "",
-            password: ""
+            password: "",
+            userId: ""
         }
     }
 
@@ -37,11 +39,14 @@ class Login extends Component {
         formData.append('username', username);
         formData.append('password', password);
 
+        let token = randtoken.generate(16);
+
         let userData = {
             name: this.state.name,
             email: this.state.email,
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            token: token
         }
 
         console.log("userdata", userData)
@@ -50,9 +55,14 @@ class Login extends Component {
             name: userData.name,
             email: userData.email,
             username: userData.username,
-            password: userData.password
+            password: userData.password,
+            token: userData.token
         }).then((result) => {
             console.log("result: ", result)
+
+            this.setState({
+                userId: result.data._id
+            })
             // this.setState({
             //     name: '',
             //     email: '',
