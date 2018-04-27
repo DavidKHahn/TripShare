@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Login.css";
 import API from "../../utils/API";
-import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize"
-import Nav_Bar from "../NavBar"
+import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize";
+import Nav_Bar from "../NavBar";
 import { Link } from "react-router-dom";
 import randtoken from "rand-token";
 
@@ -59,23 +59,9 @@ class Login extends Component {
             token: userData.token
         }).then((result) => {
             console.log("result: ", result)
-
-            this.setState({
-                userId: result.data._id
-            })
-            // this.setState({
-            //     name: '',
-            //     email: '',
-            //     username: '',
-            //     password: ''
-            // })
-
-            // console.log(this.state.name)
+            window.localStorage.setItem("token", result.data.token)
         })
-
-
     }
-
 
     handleSubmitLogin = (e) => {
         e.preventDefault();
