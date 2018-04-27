@@ -24,7 +24,7 @@ export default {
     return axios.post("/api/user", userData)
   },
   saveDetails: function(formData) {
-      return axios.post("/save", formData);
+      return axios.put("/save", formData);
   },
   getUserData: function(id) {
     return axios.get("/userdata/" + id)

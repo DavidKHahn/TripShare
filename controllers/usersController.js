@@ -28,5 +28,23 @@ module.exports = {
     .findOneAndUpdate({ username: req.body.userInfo.username}, { token: req.body.userInfo.token })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
-  }
+  },
+  updateCity: function(req, res) {
+    console.log("this is cities controller: ", JSON.stringify(req.body))
+    db.User
+      .findOneAndUpdate({ token: req.body.cityData.token }, {$push: { cities: req.body.cityData } }, { new: true })
+      .then(dbModel => {
+        res.json(dbModel)
+      })
+      .catch(err => res.status(422).json(err));
+    }
+  // updateDetail: function(req, res) {
+  //   console.log("this is details controller: ", JSON.stringify(req.body))
+  //   // db.User
+  //   //   .findOneAndUpdate( {_id: { $in: [cities]}}, {$push: { cities: req.body.cityData } }, { new: true })
+  //   //   .then(dbModel => {
+  //   //     res.json(dbModel)
+  //   //   })
+  //   //   .catch(err => res.status(422).json(err));
+  // }
 };

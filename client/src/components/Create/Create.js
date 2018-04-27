@@ -51,14 +51,14 @@ class Create extends React.Component {
         let cityData = {
             location: this.state.location,
             coordinates: this.state.coordinates,
+            token: this.state.token
         }
 
         API.saveCity({
-            location: cityData.location,
-            coordinates: cityData.coordinates,
-            token: this.state.token
+            cityData
         }).then((result) => {
             cityId = result.data._id
+            console.log(cityId)
 
         })
 
@@ -97,21 +97,33 @@ class Create extends React.Component {
     handleSubmitForm = (e) => {
         e.preventDefault();
         this.toggle();
-        const { name, description, selectedFile } = this.state;
+        const { name, description, selectedFile, token } = this.state;
         let formData = new FormData();
 
-        formData.append('name', name)
+        formData.append('name', name);
         formData.append('description', description);
         formData.append('selectedFile', selectedFile);
-        formData.append('cityId', cityId )
+        formData.append('cityId', cityId );
+        formData.append('token',  token);
+
+        console.log(this.state)
+        console.log(formData)
+        // let detailsData = {
+        //     name: this.state.name,
+        //     description: this.state.description,
+        //     selectedFile: this.state.selectedFile,
+        //     cityId: this.state.cityId
+        // }
 
         API.saveDetails(formData).then((result) => {
+
+            console.log("save details result:", result)
 
         })
     }
 
     getUserData() {
-        API.getUserData("5ae241d573b42f0a8973a28e").then((result) => {
+        API.getUserData(this.state.token).then((result) => {
             // console.log(result.data.details)
 
         })

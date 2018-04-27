@@ -26,6 +26,13 @@ router.route("/api/user")
 .get(usersController.findById)
 .put(usersController.updateUserToken)
 
+router.route("/api/create")
+// .get(usersController.findAll)
+.post(usersController.updateCity);
+
+
+
+
 
 
 

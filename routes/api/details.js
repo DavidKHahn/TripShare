@@ -2,6 +2,7 @@ var path = require("path");
 var db = require("../../models")
 var multer = require('multer');
 const uuidv4 = require('uuid/v4');
+const usersController = require("../../controllers/usersController");
 
 // File Upload
 // configure storage
@@ -30,16 +31,19 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
   
 module.exports = function (app) {
-    app.post('/save', upload.single('selectedFile'), (req, res) => {
-        
-        db.Detail.create({
-          name: req.body.name,
+    app.put('/save', upload.single('selectedFile'), (req, res) => {
+      
+      let detailsData = {
+        name: req.body.name,
           description: req.body.description,
           image: req.file.path
-        })
+      }
+
+        db.User.findOneAndUpdate({ token: req.body.token}, {cities: {$elemMatch: {_id: req.body.cityId }}}, { $push: {
+          details: detailsData
+        }})
         .then(function(dbDetail) {
-          
-          return db.City.findOneAndUpdate({_id: req.body.cityId}, { $push: { details: dbDetail._id } }, { new: true });
+          console.log("dbDetail",dbDetail)
         })
         
         /*

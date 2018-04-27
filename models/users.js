@@ -9,8 +9,16 @@ const userSchema = new Schema({
     token: { type: String, required: true },
     cities: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "City"
+            location: { type: String },
+            coordinates: { type: Array },
+            username: { type: String },
+            details: [
+                {
+                    name: { type: String},
+                    description: { type: String},
+                    image: { type: String }
+                }
+            ]
         }
     ]
 });
