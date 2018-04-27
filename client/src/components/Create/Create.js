@@ -44,6 +44,10 @@ class Create extends React.Component {
 
     handleFormSubmit = event => {
         console.log(this.state.location, this.state.coordinates);
+        //changes
+        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
+        searchBar[0].style.display="none";
+
         this.setState({
             isHidden: true
         })
@@ -96,6 +100,10 @@ class Create extends React.Component {
 
     handleSubmitForm = (e) => {
         e.preventDefault();
+        //changes
+        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
+        searchBar[0].style.display = "inline";
+
         this.toggle();
         const { name, description, selectedFile, token } = this.state;
         let formData = new FormData();
