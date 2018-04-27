@@ -3,6 +3,7 @@ import "./Login.css";
 import API from "../../utils/API";
 import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize"
 import Nav_Bar from "../NavBar"
+import { Link } from "react-router-dom";
 
 
 class Login extends Component {
@@ -36,7 +37,7 @@ class Login extends Component {
         formData.append('username', username);
         formData.append('password', password);
 
-        let userData={
+        let userData = {
             name: this.state.name,
             email: this.state.email,
             username: this.state.username,
@@ -52,10 +53,17 @@ class Login extends Component {
             password: userData.password
         }).then((result) => {
             console.log("result: ", result)
+            // this.setState({
+            //     name: '',
+            //     email: '',
+            //     username: '',
+            //     password: ''
+            // })
+
+            // console.log(this.state.name)
         })
 
-        console.log("username:", this.state.username)
-        console.log("username:", this.state.name)
+
     }
 
 
@@ -87,9 +95,9 @@ class Login extends Component {
 
             <div>
                 <Card className='container'>
-                <Row>
-                    <h5 id='appName'>Listopher Columbus</h5>
-                </Row>
+                    <Row>
+                        <h5 id='appName'>Listopher Columbus</h5>
+                    </Row>
                     <Row>
                         <Input onChange={this.handleInputChange} s={12} name="username" label="Username" placeholder="" />
                     </Row>
@@ -107,11 +115,11 @@ class Login extends Component {
                             <Input onChange={this.handleInputChange} s={12} name="username" label="Username" placeholder="Username" />
                             <Input onChange={this.handleInputChange} name="password" type="password" label="password" s={12} />
                             <Input onChange={this.handleInputChange} name="email" type="email" label="Email" s={12} />
-                            <Button onClick={this.handleSubmitSignUp} className="modal-action modal-close">Create</Button>
+                            <Button onClick={this.handleSubmitSignUp} className="modal-action modal-close"><Link to={"/create"}>Create</Link></Button>
                         </Row>
                     </Modal>
                 </Card>
-                </div>
+            </div>
 
         );
     }

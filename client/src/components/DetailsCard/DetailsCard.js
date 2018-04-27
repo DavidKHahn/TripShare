@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./DetailsCard.css";
 import API from "../../utils/API";
-// import "./CreateFunction.js";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import { Collection, CollectionItem, Button } from 'react-materialize'

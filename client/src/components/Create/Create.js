@@ -107,7 +107,7 @@ class Create extends React.Component {
 
     getUserData() {
         API.getUserData("5ae241d573b42f0a8973a28e").then((result) => {
-            console.log(result.data.details)
+            // console.log(result.data.details)
 
         })
     }
@@ -291,7 +291,6 @@ class Create extends React.Component {
 
         return (
             <div>
-                {/* <Nav_Bar /> */}
                 <div className='mapContainer'>
                     <div id='map'></div>
                     {modal}
