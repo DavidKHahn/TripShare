@@ -8,7 +8,10 @@ const usersController = require("../../controllers/usersController");
 router.route("/api/users/:id")
 // .get(usersController.findAll)
 .post(usersController.create)
-.get(usersController.findById)
+
+
+router.route("/api/users/:username")
+.get(usersController.findUser)
 
 // Matches with "/api/users/:id"
 // router
@@ -21,6 +24,7 @@ router.route("/api/user")
 // .get(usersController.findAll)
 .post(usersController.create)
 .get(usersController.findById)
+.put(usersController.updateUserToken)
 
 
 

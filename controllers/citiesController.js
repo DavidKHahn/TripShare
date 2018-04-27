@@ -19,7 +19,7 @@ module.exports = {
     db.City
       .create(req.body)
       .then(dbModel => {
-        return db.User.findOneAndUpdate({}, { $push: { cities: dbModel._id } }, { new: true }); 
+        return db.User.findOneAndUpdate({ token: req.body.token }, { $push: { cities: dbModel._id } }, { new: true }); 
         res.json(dbModel)
       })
       .catch(err => res.status(422).json(err));

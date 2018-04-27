@@ -73,6 +73,36 @@ class Login extends Component {
 
         console.log("logindata", loginData)
 
+        
+
+        API.getUser(this.state.username)
+        .then((result) => {
+            console.log(result.data)
+
+            if (this.state.password === result.data.password) {
+                alert("login successful")
+                let token = randtoken.generate(16);
+                window.localStorage.setItem("token", token)
+
+                let userInfo = {
+                    username: this.state.username,
+                    token: token
+                }
+
+                API.updateUserToken({userInfo})
+
+                window.location = "/create"
+
+
+
+            }
+            else {
+                alert("no")
+            }
+
+        })
+
+
         // API.saveUser({
         //     name: loginData.name,
         //     email: loginData.email,

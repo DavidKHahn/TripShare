@@ -3,7 +3,7 @@ import "./Create.css";
 import "./Map.css"
 import API from "../../utils/API";
 // import "./CreateFunction.js";
-import mapboxgl from 'mapbox-gl'
+import mapboxgl, { GeoJSONSource } from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
 import Nav_Bar from "../NavBar"
@@ -32,7 +32,9 @@ class Create extends React.Component {
             description: "",
             saved: [],
             selectedFile: "",
-            isHidden: false
+            isHidden: false,
+            token: "test",
+            username: ""
         }
     }
 
@@ -48,15 +50,18 @@ class Create extends React.Component {
 
         let cityData = {
             location: this.state.location,
-            coordinates: this.state.coordinates
+            coordinates: this.state.coordinates,
         }
 
         API.saveCity({
             location: cityData.location,
-            coordinates: cityData.coordinates
+            coordinates: cityData.coordinates,
+            token: this.state.token
         }).then((result) => {
             cityId = result.data._id
+
         })
+
     };
 
 
@@ -113,6 +118,13 @@ class Create extends React.Component {
     }
 
     componentDidMount() {
+
+        var userToken = window.localStorage.getItem("token") 
+
+        this.setState({ token: userToken })
+        
+
+
         this.getUserData()
 
         console.log('component is mounted')

@@ -17,8 +17,8 @@ export default {
   saveCity: function(cityData) {
     return axios.post("/api/create", cityData);
   },
-  getUser: function(id) {
-    return axios.get("/api/users/" + id)
+  getUser: function(token) {
+    return axios.get("/api/users/" + token)
   },
   saveUser: function(userData) {
     return axios.post("/api/user", userData)
@@ -28,5 +28,8 @@ export default {
   },
   getUserData: function(id) {
     return axios.get("/userdata/" + id)
+  },
+  updateUserToken: function(userData) {
+    return axios.put("/api/user", userData)
   }
 };
