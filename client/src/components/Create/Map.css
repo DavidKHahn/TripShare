@@ -585,3 +585,13 @@
         margin-right: 45% !important;
         margin-top: 15% !important;
         }
+
+    
+.collection {
+    margin: .5rem 0 1rem 0 !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    position: unset;
+}
+    /* position: relative; */
