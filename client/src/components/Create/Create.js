@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Create.css";
 import "./Map.css"
 import API from "../../utils/API";
-// import "./CreateFunction.js";
 import mapboxgl, { GeoJSONSource } from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
@@ -33,7 +32,7 @@ class Create extends React.Component {
             saved: [],
             selectedFile: "",
             isHidden: false,
-            token: "test",
+            token: "",
             username: ""
         }
     }
@@ -41,33 +40,6 @@ class Create extends React.Component {
     componentWillUnmount() {
         console.log('unmount')
     }
-
-    handleFormSubmit = event => {
-        console.log(this.state.location, this.state.coordinates);
-        //changes
-        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
-        searchBar[0].style.display="none";
-
-        this.setState({
-            isHidden: true
-        })
-
-        let cityData = {
-            location: this.state.location,
-            coordinates: this.state.coordinates,
-            token: this.state.token
-        }
-
-        API.saveCity({
-            cityData
-        }).then((result) => {
-            cityId = result.data._id
-            console.log(cityId)
-
-        })
-
-    };
-
 
     toggle(event) {
         this.setState(prevState => ({
@@ -98,6 +70,34 @@ class Create extends React.Component {
         this.setState(state);
     }
 
+    // Select Place Button
+    handleFormSubmit = event => {
+        console.log(this.state.location, this.state.coordinates);
+        //changes
+        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
+        searchBar[0].style.display="none";
+
+        this.setState({
+            isHidden: true
+        })
+
+        let cityData = {
+            location: this.state.location,
+            coordinates: this.state.coordinates,
+            token: this.state.token
+        }
+
+        API.saveCity({
+            cityData
+        }).then((result) => {
+            cityId = result.data._id
+            console.log(cityId)
+
+        })
+
+    };
+
+    // Add Details Button
     handleSubmitForm = (e) => {
         e.preventDefault();
         //changes
@@ -105,17 +105,16 @@ class Create extends React.Component {
         searchBar[0].style.display = "inline";
 
         this.toggle();
-        const { name, description, selectedFile, token } = this.state;
+        const { name, description, selectedFile, location, token } = this.state;
         let formData = new FormData();
 
         formData.append('name', name);
         formData.append('description', description);
         formData.append('selectedFile', selectedFile);
-        formData.append('cityId', cityId );
+        formData.append('location', location );
         formData.append('token',  token);
 
-        console.log(this.state)
-        console.log(formData)
+
         // let detailsData = {
         //     name: this.state.name,
         //     description: this.state.description,

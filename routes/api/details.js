@@ -35,13 +35,19 @@ module.exports = function (app) {
       
       let detailsData = {
         name: req.body.name,
-          description: req.body.description,
-          image: req.file.path
+        description: req.body.description,
+        image: req.file.path
       }
+      console.log(req.body.token)
+      console.log(req.body)
 
-        db.User.findOneAndUpdate({ token: req.body.token}, {cities: {$elemMatch: {_id: req.body.cityId }}}, { $push: {
-          details: detailsData
-        }})
+        db.User.findOneAndUpdate(
+          { token: req.body.token, "cities.location": req.body.location}, 
+          { $push: {
+            "cities.$.details": detailsData
+            }
+          }
+        )
         .then(function(dbDetail) {
           console.log("dbDetail",dbDetail)
         })
