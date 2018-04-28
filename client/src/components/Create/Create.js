@@ -130,12 +130,12 @@ class Create extends React.Component {
         })
     }
 
-    getUserData() {
-        API.getUserData(this.state.token).then((result) => {
-            // console.log(result.data.details)
+    // getUserData() {
+    //     API.getUserData(this.state.token).then((result) => {
+    //         // console.log(result.data.details)
 
-        })
-    }
+    //     })
+    // }
 
     componentDidMount() {
 
@@ -145,7 +145,7 @@ class Create extends React.Component {
         
 
 
-        this.getUserData()
+        // this.getUserData()
 
         console.log('component is mounted')
 
