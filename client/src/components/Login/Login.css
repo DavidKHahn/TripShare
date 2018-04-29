@@ -22,3 +22,39 @@
   #appName {
       text-align: center;
   }
+
+  /* @media only screen and (min-width: 1200px) */
+html {
+    font-size: 26px;
+}
+nav {
+    color: #fff;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    background-color: darkturquoise;}
+
+    .btn, .btn-large {
+        text-decoration: none;
+        color: black;
+        background-color: darkturquoise;
+        text-align: center;
+        letter-spacing: 10px;
+        transition: .2s ease-out;
+        cursor: zoom-in;
+    }
+
+    .btn, .btn-large, .btn-flat {
+        border: none;
+        border-radius: 12px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        padding: 4px 5rem;
+        height: 50px;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        font-size: 15px;
+
+    }
