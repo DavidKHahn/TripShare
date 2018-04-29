@@ -34,7 +34,7 @@ module.exports = {
     db.User
       .findOneAndUpdate(
         { token: req.body.cityData.token },
-        {$push: { cities: req.body.cityData } }, 
+        { $addToSet: { cities: req.body.cityData } }, 
         { new: true }
       )
       .then(dbModel => {
