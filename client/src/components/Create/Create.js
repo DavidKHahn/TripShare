@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
+import NavBar from "../NavBar";
 
 
 const display = {
@@ -313,6 +314,7 @@ class Create extends Component {
 
         return (
             <div>
+                <NavBar />
                 <div className='mapContainer'>
                     <div id='map'></div>
                     {modal}

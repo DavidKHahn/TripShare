@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Modal, Button, Row, Input, Card } from "react-materialize";
 import { Link } from "react-router-dom";
 import randtoken from "rand-token";
+import NavBar from "../NavBar";
 
 
 class Login extends Component {
@@ -120,6 +121,7 @@ class Login extends Component {
         return (
 
             <div>
+                <NavBar />
                 <Card className='container'>
                     <Row>
                         <h5 id='appName'>Listopher Columbus</h5>

@@ -6,6 +6,7 @@ import Nav_Bar from "../NavBar"
 import { Link } from "react-router-dom";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
+import NavBar2 from "../NavBar";
 
 var userToken = window.localStorage.getItem("token")
 
@@ -162,6 +163,7 @@ class View extends Component {
         return (
 
             <div>
+                <NavBar2 />
                 <div className='mapContainer'>
                     <div id='map'></div>
                 </div>
