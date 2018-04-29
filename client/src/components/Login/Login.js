@@ -49,7 +49,7 @@ class Login extends Component {
             token: token
         }
 
-        console.log("userdata", userData)
+        //console.log("userdata", userData)
 
         API.saveUser({
             name: userData.name,
@@ -58,8 +58,9 @@ class Login extends Component {
             password: userData.password,
             token: userData.token
         }).then((result) => {
-            console.log("result: ", result)
+            //console.log("result: ", result)
             window.localStorage.setItem("token", result.data.token)
+            window.location = "/create"
         })
     }
 
@@ -71,13 +72,13 @@ class Login extends Component {
         loginData.append('username', username);
         loginData.append('password', password);
 
-        console.log("logindata", loginData)
+        //console.log("logindata", loginData)
 
         
 
         API.getUser(this.state.username)
         .then((result) => {
-            console.log(result.data)
+            //console.log(result.data)
 
             if (this.state.password === result.data.password) {
                 alert("login successful")

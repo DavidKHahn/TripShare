@@ -38,8 +38,8 @@ module.exports = function (app) {
         description: req.body.description,
         image: req.file.path
       }
-      console.log(req.body.token)
-      console.log(req.body)
+      // console.log(req.body.token)
+      // console.log(req.body)
 
         db.User.findOneAndUpdate(
           { token: req.body.token, "cities.location": req.body.location}, 

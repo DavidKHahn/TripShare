@@ -23,14 +23,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateUserToken: function(req, res) {
-    console.log("usertoken",req.body)
+    //console.log("usertoken",req.body)
     db.User
     .findOneAndUpdate({ username: req.body.userInfo.username}, { token: req.body.userInfo.token })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
   updateCity: function(req, res) {
-    console.log("this is cities controller: ", JSON.stringify(req.body))
+    //console.log("this is cities controller: ", JSON.stringify(req.body))
     db.User
       .findOneAndUpdate(
         { token: req.body.cityData.token },
@@ -41,7 +41,13 @@ module.exports = {
         res.json(dbModel)
       })
       .catch(err => res.status(422).json(err));
-    }
+  },
+  getUserData: function(req, res) {
+    db.User
+      .findOne({ token: req.params.id })
+      .then(dbUserData => res.json(dbUserData))
+      .catch(err => res.status(422).json(err));
+  }
   // updateDetail: function(req, res) {
   //   console.log("this is details controller: ", JSON.stringify(req.body))
   //   // db.User

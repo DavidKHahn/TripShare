@@ -15,7 +15,7 @@ const hide = {
     display: 'none'
 };
 
-let cityId = "";
+var userToken = window.localStorage.getItem("token")
 
 class Create extends React.Component {
 
@@ -33,7 +33,8 @@ class Create extends React.Component {
             selectedFile: "",
             isHidden: false,
             token: "",
-            username: ""
+            username: "",
+            userCitiesData: []
         }
     }
 
@@ -90,8 +91,6 @@ class Create extends React.Component {
         API.saveCity({
             cityData
         }).then((result) => {
-            cityId = result.data._id
-            console.log(cityId)
 
         })
 
@@ -114,14 +113,6 @@ class Create extends React.Component {
         formData.append('location', location );
         formData.append('token',  token);
 
-
-        // let detailsData = {
-        //     name: this.state.name,
-        //     description: this.state.description,
-        //     selectedFile: this.state.selectedFile,
-        //     cityId: this.state.cityId
-        // }
-
         API.saveDetails(formData).then((result) => {
 
             console.log("save details result:", result)
@@ -129,22 +120,19 @@ class Create extends React.Component {
         })
     }
 
-    // getUserData() {
-    //     API.getUserData(this.state.token).then((result) => {
-    //         // console.log(result.data.details)
-
-    //     })
-    // }
+    getUserData() {
+        API.getUserData(userToken).then((result) => {
+            this.setState({userCitiesData: result.data.cities})
+        })
+    }
 
     componentDidMount() {
 
-        var userToken = window.localStorage.getItem("token") 
+        // var userToken = window.localStorage.getItem("token") 
 
         this.setState({ token: userToken })
         
-
-
-        // this.getUserData()
+        this.getUserData()
 
         console.log('component is mounted')
 
@@ -330,7 +318,7 @@ class Create extends React.Component {
                     <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>                   
                 </div>
                 {!this.state.isHidden ? "" : <h4>{this.state.location}</h4>}
-                <DetailsCard />
+                <DetailsCard data={this.state.userCitiesData}/>
             </div>
         )
     }

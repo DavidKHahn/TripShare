@@ -30,6 +30,9 @@ router.route("/api/create")
 // .get(usersController.findAll)
 .post(usersController.updateCity);
 
+router.route("/userdata/:id")
+.get(usersController.getUserData);
+
 
 
 
