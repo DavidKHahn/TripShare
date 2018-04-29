@@ -27,7 +27,7 @@ body { margin:0; padding:0; }
     width: 100% !important;
     margin-left: auto;
     margin-right: auto;
-    height: 70% !important;
+    height: 45% !important;
     border-style: solid;
     margin-top: 70px;
     margin-bottom: 30px;
@@ -39,8 +39,8 @@ body { margin:0; padding:0; }
     height: 475px !important;
 }
 
-.addBtn {
-    margin-top: 550px;
+.buttons {
+    margin-top: 275px;
 }
 
 .modal-content {

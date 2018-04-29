@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         Files will be saved in the 'uploads' directory. Make
         sure this directory already exists!
       */
-      cb(null, './uploads');
+      cb(null, './client/public/uploads');
     },
     filename: (req, file, cb) => {
       /*
@@ -32,11 +32,13 @@ const upload = multer({ storage });
   
 module.exports = function (app) {
     app.put('/save', upload.single('selectedFile'), (req, res) => {
-      
+
+      let filePath = req.file.path.split("client\\public\\")
+
       let detailsData = {
         name: req.body.name,
         description: req.body.description,
-        image: req.file.path
+        image: filePath[1]
       }
       // console.log(req.body.token)
       // console.log(req.body)

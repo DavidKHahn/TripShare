@@ -116,6 +116,7 @@ class Create extends Component {
         API.saveDetails(formData).then((result) => {
 
             console.log("save details result:", result)
+            this.getUserData();
 
         })
     }
@@ -255,7 +256,7 @@ class Create extends Component {
         modal.push(
             <div className="modal" style={this.state.toggle ? display : hide} key="modal">
                 <div className="modal-content">
-                    <h4>Title of Place</h4>
+                    <h4>{this.state.location}</h4>
                     <p>Enter Details</p>
                     <div className="row">
                         <form className="col s12">
@@ -296,7 +297,9 @@ class Create extends Component {
                                     <input
                                         type="text"
                                         className="file-path validate"
+                                        id="file"
                                     />
+                                    <label htmlFor="file">Upload Image</label>
                                 </div>
                             </div>
                         </form>
@@ -314,10 +317,12 @@ class Create extends Component {
                     <div id='map'></div>
                     {modal}
                 </div>
-                <div>
-                    <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a><a className="btn addBtn" onClick={this.toggle}>Add Place</a>                   
+                <div className="buttons">
+                    
+                    {(this.state.location === "") ? null : <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a>}
+                    {!this.state.isHidden ? "" : <a className="btn addBtn" onClick={this.toggle}>Add Place</a>  }
                 </div>
-                {!this.state.isHidden ? "" : <h4>{this.state.location}</h4>}
+                {!this.state.isHidden ? "" : <h4>Selected City: {this.state.location}</h4>}
                 <DetailsCard data={this.state.userCitiesData}/>
             </div>
         )
