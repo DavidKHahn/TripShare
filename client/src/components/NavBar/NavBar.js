@@ -1,17 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import "./NavBar.css";
-import API from "../../utils/API";
 import { Navbar, NavItem } from 'react-materialize';
-import { Link } from "react-router-dom";
 
-const Nav_Bar = props => (
+const NavBar = props => (
 
     <Navbar brand='Vacation App' right>
-        <NavItem onClick={() => console.log('test click')}><Link to={"/"}>Home</Link></NavItem>
-        <NavItem href=''><Link to={"/create"}>Create</Link></NavItem>
-        <NavItem href=''><Link to={"/view"}>View</Link></NavItem>
-        <NavItem href=''>Account</NavItem>
+        <NavItem href={"/"}>Home</NavItem>
+        <NavItem href={"/create"}>Create</NavItem>
+        <NavItem href={"/view"}>View</NavItem>
     </Navbar>
 )
 
-export default Nav_Bar;
+export default NavBar;

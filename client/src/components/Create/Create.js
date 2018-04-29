@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./Create.css";
 import "./Map.css"
 import API from "../../utils/API";
-import mapboxgl, { GeoJSONSource } from 'mapbox-gl'
+// import mapboxgl, { GeoJSONSource } from 'mapbox-gl'
+import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
-import Nav_Bar from "../NavBar"
 
 
 const display = {
@@ -17,7 +17,7 @@ const hide = {
 
 var userToken = window.localStorage.getItem("token")
 
-class Create extends React.Component {
+class Create extends Component {
 
     constructor(props) {
         super(props);
@@ -227,7 +227,7 @@ class Create extends React.Component {
             });
         });
 
-        var marker = document.getElementsByClassName('marker');
+        // var marker = document.getElementsByClassName('marker');
 
         map.on('click', function (e) {
             console.log("hello")
@@ -239,13 +239,13 @@ class Create extends React.Component {
                 return;
             }
 
-            var feature = features[0];
+            // var feature = features[0];
 
-            var popup = new mapboxgl.Popup({ offset: [0, -15] })
-                .setLngLat(feature.geometry.coordinates)
-                .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-                .setLngLat(feature.geometry.coordinates)
-                .addTo(map);
+            // var popup = new mapboxgl.Popup({ offset: [0, -15] })
+            //     .setLngLat(feature.geometry.coordinates)
+            //     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+            //     .setLngLat(feature.geometry.coordinates)
+            //     .addTo(map);
         });
     }
 
@@ -253,7 +253,7 @@ class Create extends React.Component {
 
         var modal = [];
         modal.push(
-            <div className="modal" style={this.state.toggle ? display : hide}>
+            <div className="modal" style={this.state.toggle ? display : hide} key="modal">
                 <div className="modal-content">
                     <h4>Title of Place</h4>
                     <p>Enter Details</p>
@@ -268,7 +268,7 @@ class Create extends React.Component {
                                         type="text"
                                         className="validate"
                                     />
-                                    <label for="name">Name</label>
+                                    <label htmlFor="name">Name</label>
                                 </div>
                             </div>
                             <div className="row">
@@ -280,7 +280,7 @@ class Create extends React.Component {
                                         type="text"
                                         className="validate"
                                     />
-                                    <label for="description">Description</label>
+                                    <label htmlFor="description">Description</label>
                                 </div>
                             </div>
                             <div className="file-field input-field">

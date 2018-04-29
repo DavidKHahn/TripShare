@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import API from "../../utils/API";
-import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize";
-import Nav_Bar from "../NavBar";
+import { Modal, Button, Row, Input, Card } from "react-materialize";
 import { Link } from "react-router-dom";
 import randtoken from "rand-token";
 
@@ -66,7 +65,7 @@ class Login extends Component {
 
     handleSubmitLogin = (e) => {
         e.preventDefault();
-        const { name, email, username, password } = this.state;
+        const { username, password } = this.state;
         let loginData = new FormData();
 
         loginData.append('username', username);

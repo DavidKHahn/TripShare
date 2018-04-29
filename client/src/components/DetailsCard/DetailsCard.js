@@ -8,7 +8,7 @@ const DetailsCard = props => {
     return (
     <div className='detailCard'>
         {props.data.map(result => (
-        <Collection>
+        <Collection key={result._id}>
             <CollectionItem>
                 <h5>
                     <span id='placeTitle'>
@@ -17,12 +17,12 @@ const DetailsCard = props => {
                 </h5>
             </CollectionItem>
             {result.details.map(details => (
-            <CollectionItem>
+            <CollectionItem key={details._id}>
                 <p>Name: {details.name}</p>
                 <p>Description: {details.description}</p>
                 <span className='detailBtns'>
-                    <Button floating small className='green detailBtn' waves='light' icon='edit' />
-                    <Button floating small className='red detailBtn' waves='light' icon='delete' />
+                    <Button floating className='green detailBtn' waves='light' icon='edit' />
+                    <Button floating className='red detailBtn' waves='light' icon='delete' />
                 </span>
             </CollectionItem>
             ))}
