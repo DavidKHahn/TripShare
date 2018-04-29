@@ -47,6 +47,12 @@ module.exports = {
       .findOne({ token: req.params.id })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.status(422).json(err));
+  },
+  getUsers: function (reg, res) {
+    db.User
+      .findAll({})
+      .then(dbUsers => res.json(dbUsers))
+      .catch(err => res.status(422).json(err));
   }
   // updateDetail: function(req, res) {
   //   console.log("this is details controller: ", JSON.stringify(req.body))

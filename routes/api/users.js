@@ -33,6 +33,9 @@ router.route("/api/create")
 router.route("/userdata/:id")
 .get(usersController.getUserData);
 
+router.route("/api/users")
+.get(usersController.getUsers)
+
 
 
 

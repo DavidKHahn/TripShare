@@ -7,13 +7,25 @@ import { Link } from "react-router-dom";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 
+var userToken = window.localStorage.getItem("token")
+
+var cityCoords = []
+
+var map
 
 class View extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            places: []
+            userCitiesData: [],
+            token: '',
+            cityCoords: [],
+            geojson: {
+                type: 'FeatureCollection',
+                features: []
+            },
+            userList: []
         }
     }
 
@@ -29,37 +41,44 @@ class View extends Component {
     handleSubmitSignUp = (e) => {
         e.preventDefault();
 
-
     }
 
-
-    handleSubmitLogin = (e) => {
-        e.preventDefault();
-        const { name, email, username, password } = this.state;
-        let loginData = new FormData();
-
-        loginData.append('username', username);
-        loginData.append('password', password);
-
-        console.log("logindata", loginData)
-
-        console.log("username:", this.state.username)
+    updateCities = (coord) => {
+        this.setState({ cityCoords: coord })
+        console.log(this.state.cityCoords)
     }
 
     getUserData() {
-        API.getUserData("5ae241d573b42f0a8973a28e").then((result) => {
-            // console.log(result.data.details)
+        API.getUserData(userToken).then((result) => {
+            console.log(result.data)
+            this.setState({ userCitiesData: result.data.cities })
 
+            cityCoords = this.state.userCitiesData.map((data) => {
+                return (data.coordinates)
+            })
+
+            this.updateCities(cityCoords)
+        })
+    }
+
+    populateUsers() {
+        API.getUsers().then( (res) => {
+            console.log(res)
         })
     }
 
     componentDidMount() {
+
+        this.setState({ token: userToken })
+
         this.getUserData()
+
+        
 
         console.log('component is mounted')
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJoZWVlZSIsImEiOiJjamdjeXZsaGswNmk0MzJtYWM5MXJxdWhlIn0.YLMP3IJkPnF-y8Yv0A8Udg';
-        var map = new mapboxgl.Map({
+        map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
             center: [-79.4512, 43.6568],
@@ -70,9 +89,75 @@ class View extends Component {
             type: 'FeatureCollection',
             features: []
         };
+
+        this.state.userCitiesData.forEach((dat) => {
+            var cityFeature = {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: dat.coordinates
+                },
+                properties: {
+                    title: "City",
+                    description: dat.location
+                }
+            }
+
+            geojson.features.push(cityFeature)
+        })
+
+        geojson.features.forEach((marker) => {
+
+            console.log("marker", marker)
+
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML('<p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+        });
     }
 
     render() {
+
+        this.state.userCitiesData.forEach((dat) => {
+            var cityFeature = {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: dat.coordinates
+                },
+                properties: {
+                    title: "City",
+                    description: dat.location
+                }
+            }
+
+            this.state.geojson.features.push(cityFeature)
+        })
+
+        this.state.geojson.features.forEach((marker) => {
+
+            console.log("marker", marker)
+
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML('<p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+        });
+
+        console.log(this.state.cityCoords)
 
         return (
 

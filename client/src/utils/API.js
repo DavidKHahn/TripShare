@@ -31,5 +31,8 @@ export default {
   },
   updateUserToken: function(userData) {
     return axios.put("/api/user", userData)
+  },
+  getUsers: function() {
+    return axios.get("/api/uers")
   }
 };
