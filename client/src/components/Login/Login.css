@@ -56,9 +56,24 @@ nav {
 
     } */
 
-    body, html {
+    #body, #html {
        
         background-image: url("mapbackground.jpg");
         height: 100%;
         background-size: cover;
+    }
+
+    #logincontainer {
+        margin-right: 33%;
+        margin-left: 40%;
+        margin-top: 5%;
+        width: 22%;
+        border-radius: 10px;
+        background-color: aliceblue;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
     }

@@ -127,12 +127,12 @@ class Login extends Component {
     render() {
 
         return (
-
+            <body id="body">
             <div>
                 <NavBar2 />
-                <Card className='container'>
+                <Card className='container' id="logincontainer">
                     <Row>
-                        <h5 id='appName'>Listopher Columbus</h5>
+                        <h5 id='appName'>Scratch Map</h5>
                     </Row>
                     <Row>
                         <Input onChange={this.handleInputChange} s={12} name="username" type="text" label="Username"  />
@@ -156,6 +156,7 @@ class Login extends Component {
                     </Modal>
                 </Card>
             </div>
+            </body>
 
         );
     }
