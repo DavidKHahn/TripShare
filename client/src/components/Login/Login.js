@@ -128,17 +128,16 @@ class Login extends Component {
 
         return (
 
-            <div id="page1">
                 <NavBar2 />
                 <Card className='container'>
                     <Row>
                         <h5 id='appName'>Listopher Columbus</h5>
                     </Row>
                     <Row>
-                        <Input onChange={this.handleInputChange} s={12} name="username" label="Username" placeholder="" />
+                        <Input onChange={this.handleInputChange} s={12} name="username" type="text" label="Username"  />
                     </Row>
                     <Row>
-                        <Input onChange={this.handleInputChange} name="password" type="password" label="password" s={12} />
+                        <Input onChange={this.handleInputChange} s={12} name="password" type="password" label="Password"  />
                     </Row>
                     <Row>
                         <Button onClick={this.handleSubmitLogin}>Login</Button>
