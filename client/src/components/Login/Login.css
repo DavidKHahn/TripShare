@@ -1,10 +1,12 @@
 
 html, body {
     height: 100% !important;
+    
 }
 
 div#root {
     height: 100% !important;
+    
     
 }
 
@@ -68,11 +70,14 @@ nav {
 
     .App {
         height: 100% !important;
+        
+    
     }
 
     #body {
-    background-image: url(mapbackground.jpg);
     height: 100% !important;
+    background-image: url(image.png);
+        background-size: cover;
     
     }
 
@@ -94,3 +99,15 @@ nav {
         text-decoration: none;
         -webkit-tap-highlight-color: transparent;
     }
+
+    .btn:hover, .btn-large:hover {
+        background-color: aqua;
+    }
+    .btn, .btn-large {
+        text-decoration: none;
+        color: #fff;
+        background-color: #4D929E;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer;}
