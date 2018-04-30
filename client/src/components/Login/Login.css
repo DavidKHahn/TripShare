@@ -5,6 +5,7 @@ html, body {
 
 div#root {
     height: 100% !important;
+    
 }
 
 
@@ -70,8 +71,9 @@ nav {
     }
 
     #body {
-    background-image: url(/static/media/mapbackground.d0ee7e0c.jpg);
+    background-image: url(mapbackground.jpg);
     height: 100% !important;
+    
     }
 
     div.card-content {
