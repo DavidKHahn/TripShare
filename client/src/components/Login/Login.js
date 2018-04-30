@@ -130,11 +130,7 @@ class Login extends Component {
                 <NavBar2 />
                 <Card className='container' id="logincontainer">
                     <Row>
-<<<<<<< HEAD
-                        <h5 id='appName'>Trip Share</h5>
-=======
                         <h5 id='appName'>TripShare</h5>
->>>>>>> 53339a47e2fb5fe4f47f679a723c7473fd041062
                     </Row>
                     <Row>
                         <Input onChange={this.handleInputChange} s={12} name="username" type="text" label="Username"  />
