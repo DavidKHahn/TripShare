@@ -1,9 +1,18 @@
+
+html, body {
+    height: 100% !important;
+}
+
+div#root {
+    height: 100% !important;
+}
+
+
 .container  {
     display: flex;
     justify-content: center;
 
-    height: 100%;
-    width: 100%;
+  
   }
   
   .container{
@@ -56,17 +65,20 @@ nav {
 
     } */
 
-    #body, #html {
-       
-        background-image: url("mapbackground.jpg");
-        height: 100%;
-        background-size: cover;
-    }
-    #body {
-        height: 700px;
+    .App {
+        height: 100% !important;
     }
 
-    #logincontainer {
+    #body {
+    background-image: url(/static/media/mapbackground.d0ee7e0c.jpg);
+    height: 100% !important;
+    }
+
+    div.card-content {
+        max-height: 500px;
+    }
+
+    #logincontainer {   
         margin-right: 33%;
         margin-left: 40%;
         margin-top: 5%;
