@@ -43,5 +43,8 @@ export default {
   },
   getCurrentUser: function(token) {
     return axios.get("/api/user/" + token)
+  },
+  deleteCity: function(id) {
+    return axios.put("/api/city/", id)
   }
 };

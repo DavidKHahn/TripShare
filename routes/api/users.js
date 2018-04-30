@@ -45,6 +45,9 @@ router.route("/api/userdata/:name")
 router.route("/api/user/:token")
 .get(usersController.getCurrentUser)
 
+router.route("/api/city")
+.put(usersController.deleteCity)
+
 
 
 

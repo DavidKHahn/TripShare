@@ -79,6 +79,17 @@ module.exports = {
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.status(422).json(err));
   },
+  deleteCity: function(req, res) {
+    console.log(req.body.detailsId)
+    db.User
+      .findOneAndUpdate(
+        { token: req.body.userId },
+        { $pull: { cities: { _id: req.body.citiesId } } }, 
+        { new: true }
+      )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
   // updateDetail: function(req, res) {
   //   console.log("this is details controller: ", JSON.stringify(req.body))
   //   // db.User

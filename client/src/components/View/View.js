@@ -118,7 +118,7 @@ class View extends Component {
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
             center: [-79.4512, 43.6568],
-            zoom: 2
+            zoom: 1
         });
 
         var geojson = {

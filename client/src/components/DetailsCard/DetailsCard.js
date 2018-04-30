@@ -10,6 +10,10 @@ class DetailsCard extends Component {
         this.props.onClick(citiesId, detailsId)
     }
 
+    delCity = (userToken, citiesId) => {
+        this.props.deleteCity(userToken, citiesId)
+    }
+
     render() {
         return (
             <div>
@@ -22,6 +26,9 @@ class DetailsCard extends Component {
                                     <span id='placeTitle'>
                                         {result.location}
                                     </span>
+                                    <span className='cityBtns'>
+                                                <Button onClick={() => this.delCity(this.props.token, result._id)} floating className='red detailBtn' waves='light' icon='delete' />
+                                            </span>
                                 </h5>
                             </div>
                             <Row>

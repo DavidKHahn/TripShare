@@ -164,6 +164,18 @@ class Create extends Component {
           .catch(err => console.log(err));
     };
 
+    deleteCity = (userId, citiesId) => {
+
+        let id = {
+            userId: userId,
+            citiesId: citiesId
+        }
+
+        API.deleteCity(id)
+          .then(res => this.getUserData())
+          .catch(err => console.log(err));
+    };
+
     currentUser() {
         API.getCurrentUser(userToken).then((res) => {
 
@@ -194,7 +206,7 @@ class Create extends Component {
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
             center: [-79.4512, 43.6568],
-            zoom: 2
+            zoom: 1
         });
 
         var geocoder = new MapboxGeocoder({
@@ -380,7 +392,7 @@ class Create extends Component {
                         {!this.state.isHidden ? "" : <Card><h4>Selected City: {this.state.location}</h4></Card>}
                     </Col>
                 </Row>
-                <DetailsCard data={this.state.userCitiesData} onClick={this.deletePlace}/>
+                <DetailsCard data={this.state.userCitiesData} token={this.state.token} onClick={this.deletePlace} deleteCity={this.deleteCity}/>
             </div>
         )
     }
