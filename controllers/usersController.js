@@ -12,7 +12,13 @@ module.exports = {
   create: function (req, res) {
     console.log("this is users controller: ", JSON.stringify(req.body))
     db.User
-      .create(req.body)
+      .create({
+      name: req.body.name,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password,
+      token: req.body.token
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => 
         {
