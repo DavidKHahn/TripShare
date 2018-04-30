@@ -33,12 +33,12 @@ const upload = multer({ storage });
 module.exports = function (app) {
     app.put('/save', upload.single('selectedFile'), (req, res) => {
 
-      let filePath = req.file.path.split("client/public/")
-      console.log(filePath)
+      // let filePath = req.file.path.split("client/public/")
+      // console.log(filePath)
       let detailsData = {
         name: req.body.name,
         description: req.body.description,
-        image: filePath[1]
+        image: req.file.path
       }
       // console.log(req.body.token)
       // console.log(req.body)
