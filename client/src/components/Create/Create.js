@@ -324,6 +324,7 @@ class Create extends Component {
 
         var modal = [];
         modal.push(
+            <div id="body2">
             <div className="modal" style={this.state.toggle ? display : hide} key="modal">
                 <div className="modal-content">
                     <Button type="button" class="close" onClick={()=> this.toggle()} floating className='closeBtn' icon='close'/>
@@ -382,7 +383,7 @@ class Create extends Component {
                 <div className="modal-footer">
                     <a className="btn" onClick={this.handleSubmitForm}>Save</a>
                 </div>
-            </div>
+            </div></div>
         );
 
         return (
@@ -404,6 +405,7 @@ class Create extends Component {
                 </Row>
                 <DetailsCard data={this.state.userCitiesData} token={this.state.token} onClick={this.deletePlace} deleteCity={this.deleteCity}/>
             </div>
+            
         )
     }
 };

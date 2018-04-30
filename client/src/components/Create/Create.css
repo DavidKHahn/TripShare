@@ -51,3 +51,9 @@ body { margin:0; padding:0; }
     float: right;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #DCEEF2;
+    font-family: sans-serif;
+}
