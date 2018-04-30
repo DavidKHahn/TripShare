@@ -117,7 +117,7 @@ class View extends Component {
         map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
-            center: [-79.4512, 43.6568],
+            center: [20.107686, 31.863775],
             zoom: 1
         });
 

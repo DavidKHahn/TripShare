@@ -84,7 +84,6 @@ class Login extends Component {
             //console.log(result.data)
 
             if (this.state.password === result.data.password) {
-                alert("login successful")
                 let token = randtoken.generate(16);
                 window.localStorage.setItem("token", token)
                 window.localStorage.setItem("name", result.data.name)
@@ -104,7 +103,7 @@ class Login extends Component {
 
             }
             else {
-                alert("no")
+                alert("Invalid Username/Password")
             }
 
         })
