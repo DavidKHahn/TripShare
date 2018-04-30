@@ -6,7 +6,7 @@ import Nav_Bar from "../NavBar"
 import { Link } from "react-router-dom";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
-import DetailsCard from "../DetailsCard";
+import DetailsCard2 from "../DetailsCard2";
 
 var userToken = window.localStorage.getItem("token")
 var name = window.localStorage.getItem("name")
@@ -28,7 +28,8 @@ class View extends Component {
                 type: 'FeatureCollection',
                 features: []
             },
-            userList: []
+            userList: [],
+            loggedAs: ""
         }
         this.userSelect = this.userSelect.bind(this);
     }
@@ -77,6 +78,14 @@ class View extends Component {
         })
     }
 
+    currentUser() {
+        API.getCurrentUser(userToken).then((res) => {
+
+            console.log("userNAME", res)
+            this.setState({ loggedAs: res.data.username })
+        })
+    }
+
     populateUsers() {
         API.getUsers().then((res) => {
 
@@ -91,6 +100,8 @@ class View extends Component {
         this.getUserData()
 
         this.populateUsers()
+
+        this.currentUser()
 
         name = window.localStorage.getItem('name')
         console.log("current user:", name)
@@ -189,14 +200,14 @@ class View extends Component {
                             )}
                         </Input>
                     </NavItem>
-                    <NavItem href={"/"}>Home</NavItem>
                     <NavItem href={"/create"}>Create</NavItem>
                     <NavItem href={"/view"}>View</NavItem>
+                    <NavItem href={"/"}>{this.state.loggedAs}: Log Out</NavItem>
                 </Navbar>
                 <div className='mapContainer'>
                     <div id='map'></div>
                 </div>
-                        <DetailsCard data={this.state.userCitiesData}/>
+                        <DetailsCard2 data={this.state.userCitiesData}/>
             </div>
 
         );

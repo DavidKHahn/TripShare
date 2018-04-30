@@ -40,5 +40,8 @@ export default {
   },
   getUserByName: function(name) {
     return axios.get("/api/userdata/" + name)
+  },
+  getCurrentUser: function(token) {
+    return axios.get("/api/user/" + token)
   }
 };

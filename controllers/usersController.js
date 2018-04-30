@@ -72,7 +72,13 @@ module.exports = {
       )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  getCurrentUser: function (req, res) {
+    db.User
+      .findOne({ token: req.params.token })
+      .then(dbUserData => res.json(dbUserData))
+      .catch(err => res.status(422).json(err));
+  },
   // updateDetail: function(req, res) {
   //   console.log("this is details controller: ", JSON.stringify(req.body))
   //   // db.User
