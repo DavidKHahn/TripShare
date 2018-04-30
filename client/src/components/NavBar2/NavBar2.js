@@ -1,6 +1,6 @@
 import React from "react";
 import "./NavBar.css";
-import { Navbar, NavItem } from 'react-materialize';
+import { Navbar, NavItem, Input } from 'react-materialize';
 
 const NavBar2 = props => (
 

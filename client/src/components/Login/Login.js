@@ -7,6 +7,8 @@ import randtoken from "rand-token";
 import NavBar2 from "../NavBar2";
 
 
+
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -60,6 +62,7 @@ class Login extends Component {
         }).then((result) => {
             //console.log("result: ", result)
             window.localStorage.setItem("token", result.data.token)
+            window.localStorage.setItem("name", result.data.name)
             window.location = "/create"
         })
     }
@@ -84,6 +87,7 @@ class Login extends Component {
                 alert("login successful")
                 let token = randtoken.generate(16);
                 window.localStorage.setItem("token", token)
+                window.localStorage.setItem("name", result.data.name)
 
                 let userInfo = {
                     username: this.state.username,
@@ -91,6 +95,8 @@ class Login extends Component {
                 }
 
                 API.updateUserToken({userInfo})
+                
+                
 
                 window.location = "/create"
 
@@ -102,6 +108,8 @@ class Login extends Component {
             }
 
         })
+
+        
 
 
         // API.saveUser({

@@ -33,6 +33,9 @@ export default {
     return axios.put("/api/user", userData)
   },
   getUsers: function() {
-    return axios.get("/api/uers")
+    return axios.get("/api/users")
+  },
+  getUserByName: function(name) {
+    return axios.get("/api/userdata/" + name)
   }
 };

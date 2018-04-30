@@ -36,6 +36,10 @@ router.route("/userdata/:id")
 router.route("/api/users")
 .get(usersController.getUsers)
 
+router.route("/api/userdata/:name")
+.get(usersController.getUserByName);
+
+
 
 
 

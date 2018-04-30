@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import "./View.css";
 import API from "../../utils/API";
-import { Modal, Button, Row, Input, Col, CardPanel, Card } from "react-materialize"
+import { Modal, Button, Row, Input, Col, CardPanel, Card, Navbar, NavItem, Dropdown } from "react-materialize"
 import Nav_Bar from "../NavBar"
 import { Link } from "react-router-dom";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
-import NavBar2 from "../NavBar";
+import DetailsCard from "../DetailsCard";
 
 var userToken = window.localStorage.getItem("token")
+var name = window.localStorage.getItem("name")
 
 var cityCoords = []
 
@@ -20,6 +21,7 @@ class View extends Component {
 
         this.state = {
             userCitiesData: [],
+            user: "",
             token: '',
             cityCoords: [],
             geojson: {
@@ -28,6 +30,7 @@ class View extends Component {
             },
             userList: []
         }
+        this.userSelect = this.userSelect.bind(this);
     }
 
     handleInputChange = event => {
@@ -49,10 +52,22 @@ class View extends Component {
         console.log(this.state.cityCoords)
     }
 
+    userSelect = (event) => {
+        event.preventDefault();
+        console.log("event", event.target)
+
+        window.localStorage.setItem("name", event.target.value)
+        // this.setState({ user: event.target.value })
+    }
+
     getUserData() {
-        API.getUserData(userToken).then((result) => {
-            console.log(result.data)
-            this.setState({ userCitiesData: result.data.cities })
+        console.log("name", name)
+        API.getUserByName(name).then((result) => {
+            console.log("result", result)
+            this.setState({
+                userCitiesData: result.data.cities,
+                user: name
+            })
 
             cityCoords = this.state.userCitiesData.map((data) => {
                 return (data.coordinates)
@@ -63,8 +78,9 @@ class View extends Component {
     }
 
     populateUsers() {
-        API.getUsers().then( (res) => {
-            console.log(res)
+        API.getUsers().then((res) => {
+
+            this.setState({ userList: res.data })
         })
     }
 
@@ -74,7 +90,10 @@ class View extends Component {
 
         this.getUserData()
 
-        
+        this.populateUsers()
+
+        name = window.localStorage.getItem('name')
+        console.log("current user:", name)
 
         console.log('component is mounted')
 
@@ -158,15 +177,26 @@ class View extends Component {
                 .addTo(map);
         });
 
-        console.log(this.state.cityCoords)
-
         return (
 
             <div>
-                <NavBar2 />
+                <Navbar brand='Vacation App' right>
+                    <NavItem>
+                        <Input s={2} onChange={this.userSelect} type='select' label="Materialize Select" value={name}>
+                            {this.state.userList.map(result =>
+                                <option onClick={this.userSelect}>{result.name}</option>
+
+                            )}
+                        </Input>
+                    </NavItem>
+                    <NavItem href={"/"}>Home</NavItem>
+                    <NavItem href={"/create"}>Create</NavItem>
+                    <NavItem href={"/view"}>View</NavItem>
+                </Navbar>
                 <div className='mapContainer'>
                     <div id='map'></div>
                 </div>
+                        <DetailsCard data={this.state.userCitiesData}/>
             </div>
 
         );
