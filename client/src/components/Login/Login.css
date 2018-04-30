@@ -82,7 +82,8 @@ nav {
     }
 
     div.card-content {
-        max-height: 500px;
+        
+        background-color: aliceblue !important;
     }
 
     #logincontainer {   
