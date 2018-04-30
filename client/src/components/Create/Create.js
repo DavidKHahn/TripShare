@@ -143,6 +143,12 @@ class Create extends Component {
             console.log("save details result:", result)
             this.getUserData();
 
+            this.setState({
+                name: "",
+                description: "",
+                selectedFile: ""
+              });
+
         })
     }
 
@@ -332,6 +338,7 @@ class Create extends Component {
                                         id="name"
                                         type="text"
                                         className="validate"
+                                        value={this.state.name}
                                     />
                                     <label htmlFor="name">Name</label>
                                 </div>
@@ -344,6 +351,7 @@ class Create extends Component {
                                         id="=description"
                                         type="text"
                                         className="validate"
+                                        value={this.state.description}
                                     />
                                     <label htmlFor="description">Description</label>
                                 </div>
@@ -362,6 +370,7 @@ class Create extends Component {
                                         type="text"
                                         className="file-path validate"
                                         id="file"
+                                        value={this.state.selectedFile}
                                     />
                                     <label htmlFor="file">Upload Image</label>
                                 </div>
