@@ -39,7 +39,7 @@ class DetailsCard extends Component {
                                             key={details._id}
                                             header={<CardTitle image={details.image}>{details.name}</CardTitle>}
                                         >
-                                            <p>Description: {details.description}</p>
+                                            <p className="description">Description: {details.description}</p>
                                             <span className='detailBtns'>
                                                 <Button onClick={() => this.delPlace(result._id, details._id)} floating className='red detailBtn' waves='light' icon='delete' />
                                             </span>
