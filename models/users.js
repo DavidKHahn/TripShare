@@ -20,7 +20,8 @@ const userSchema = new Schema({
                 }
             ]
         }
-    ]
+    ],
+    sparse: true
 });
 
 const User = mongoose.model("User", userSchema);
