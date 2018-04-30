@@ -79,8 +79,8 @@ class Create extends Component {
     handleFormSubmit = event => {
         //console.log(this.state.location, this.state.coordinates);
         //changes
-        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
-        searchBar[0].style.display="none";
+        // let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
+        // searchBar[0].style.display="none";
 
         this.setState({
             isHidden: true
@@ -125,8 +125,8 @@ class Create extends Component {
     handleSubmitForm = (e) => {
         e.preventDefault();
         //changes
-        let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
-        searchBar[0].style.display = "inline";
+        // let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
+        // searchBar[0].style.display = "inline";
 
         this.toggle();
         const { name, description, selectedFile, location, token } = this.state;
@@ -205,7 +205,7 @@ class Create extends Component {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
-            center: [-79.4512, 43.6568],
+            center: [20.107686, 31.863775],
             zoom: 1
         });
 

@@ -84,7 +84,6 @@ class Login extends Component {
             //console.log(result.data)
 
             if (this.state.password === result.data.password) {
-                alert("login successful")
                 let token = randtoken.generate(16);
                 window.localStorage.setItem("token", token)
                 window.localStorage.setItem("name", result.data.name)
@@ -104,7 +103,7 @@ class Login extends Component {
 
             }
             else {
-                alert("no")
+                alert("Invalid Username/Password")
             }
 
         })
@@ -131,7 +130,11 @@ class Login extends Component {
                 <NavBar2 />
                 <Card className='container' id="logincontainer">
                     <Row>
+<<<<<<< HEAD
                         <h5 id='appName'>Trip Share</h5>
+=======
+                        <h5 id='appName'>TripShare</h5>
+>>>>>>> 53339a47e2fb5fe4f47f679a723c7473fd041062
                     </Row>
                     <Row>
                         <Input onChange={this.handleInputChange} s={12} name="username" type="text" label="Username"  />

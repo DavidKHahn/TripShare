@@ -16,7 +16,7 @@ class DetailsCard2 extends Component {
                 {this.props.data.map(result => (
                 <Row>
                     <Col s={12} key={result._id}>
-                        <Card>
+                        <Card className='viewCard'>
                             <div>
                                 <h5>
                                     <span id='placeTitle'>
@@ -32,7 +32,7 @@ class DetailsCard2 extends Component {
                                             key={details._id}
                                             header={<CardTitle image={details.image}>{details.name}</CardTitle>}
                                         >
-                                            <p>Description: {details.description}</p>
+                                            <p className="description">Description: {details.description}</p>
                                             <span className='detailBtns'>
                                                 
                                             </span>

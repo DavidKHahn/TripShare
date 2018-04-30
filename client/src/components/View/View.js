@@ -117,7 +117,7 @@ class View extends Component {
         map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/arheeee/cjgcyypkq00032sqkj85b2any',
-            center: [-79.4512, 43.6568],
+            center: [20.107686, 31.863775],
             zoom: 1
         });
 
@@ -196,7 +196,7 @@ class View extends Component {
         return (
 
             <div>
-                <Navbar brand='Vacation App' right>
+                <Navbar brand='TripShare' right>
                     <NavItem>
                         <Input s={2} onChange={this.userSelect} type='select' label="Materialize Select" value={name}>
                             {this.state.userList.map(result =>

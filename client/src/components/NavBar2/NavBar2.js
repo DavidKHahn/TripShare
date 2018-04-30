@@ -4,7 +4,7 @@ import { Navbar, NavItem, Input } from 'react-materialize';
 
 const NavBar2 = props => (
 
-    <Navbar brand=''right id="navbar2">
+    <Navbar brand='TripShare'right id="navbar2">
         {/* <NavItem href={"/"}>Home</NavItem>
         <NavItem href={"/create"}>Create</NavItem>
         <NavItem href={"/view"}>View</NavItem> */}
