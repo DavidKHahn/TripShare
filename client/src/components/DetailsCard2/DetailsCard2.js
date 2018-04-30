@@ -16,7 +16,7 @@ class DetailsCard2 extends Component {
                 {this.props.data.map(result => (
                 <Row>
                     <Col s={12} key={result._id}>
-                        <Card>
+                        <Card className='viewCard'>
                             <div>
                                 <h5>
                                     <span id='placeTitle'>
