@@ -91,8 +91,6 @@ class Create extends Component {
         }
 
         let cities = this.state.userCitiesData
-        console.log("cities: ", cities[0].location)
-        console.log("cityData ", cityData.location)
 
         let match = false;
 
