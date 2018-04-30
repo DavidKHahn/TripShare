@@ -9,7 +9,7 @@ const userSchema = new Schema({
     token: { type: String, required: true },
     cities: [
         {
-            location: { type: String },
+            location: { type: String, sparce: true },
             coordinates: { type: Array },
             username: { type: String },
             details: [
