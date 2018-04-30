@@ -55,3 +55,10 @@ nav {
         font-size: 12px;
 
     } */
+
+    body, html {
+       
+        background-image: url("mapbackground.jpg");
+        height: 100%;
+        background-size: cover;
+    }
