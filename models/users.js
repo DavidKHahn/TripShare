@@ -9,13 +9,13 @@ const userSchema = new Schema({
     token: { type: String, required: true },
     cities: [
         {
-            location: { type: String, unique: true },
-            coordinates: { type: Array, unique: true },
+            location: { type: String },
+            coordinates: { type: Array },
             username: { type: String },
             details: [
                 {
-                    name: { type: String},
-                    description: { type: String},
+                    name: { type: String },
+                    description: { type: String },
                     image: { type: String }
                 }
             ]
