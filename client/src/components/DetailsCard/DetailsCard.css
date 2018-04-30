@@ -13,3 +13,6 @@
 .description {
     text-align: left;
 }
+.deleteBtn {
+    justify-content: right !important;
+}
