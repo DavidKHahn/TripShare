@@ -144,13 +144,13 @@ class Login extends Component {
                         <Button onClick={this.handleSubmitLogin}>Login</Button>
                     </Row>
                     <Modal
-                        header='Modal Header'
+                        header='Sign Up'
                         trigger={<Button>Sign Up</Button>}>
                         <Row>
-                            <Input onChange={this.handleInputChange} s={12} name="name" label="name" />
-                            <Input onChange={this.handleInputChange} s={12} name="username" label="Username" placeholder="Username" />
-                            <Input onChange={this.handleInputChange} name="password" type="password" label="password" s={12} />
+                            <Input onChange={this.handleInputChange} s={12} name="name" label="Name" />
                             <Input onChange={this.handleInputChange} name="email" type="email" label="Email" s={12} />
+                            <Input onChange={this.handleInputChange} s={12} name="username" label="Username" />
+                            <Input onChange={this.handleInputChange} name="password" type="password" label="Password" s={12} />           
                             <Button onClick={this.handleSubmitSignUp} className="modal-action modal-close"><Link to={"/create"}>Create</Link></Button>
                         </Row>
                     </Modal>
