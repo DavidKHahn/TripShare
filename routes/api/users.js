@@ -38,6 +38,9 @@ router.route("/api/users")
 
 router.route("/api/place")
 .put(usersController.deletePlace)
+router.route("/api/userdata/:name")
+.get(usersController.getUserByName);
+
 
 
 

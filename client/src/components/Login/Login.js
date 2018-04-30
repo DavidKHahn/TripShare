@@ -4,7 +4,9 @@ import API from "../../utils/API";
 import { Modal, Button, Row, Input, Card } from "react-materialize";
 import { Link } from "react-router-dom";
 import randtoken from "rand-token";
-import NavBar from "../NavBar";
+import NavBar2 from "../NavBar2";
+
+
 
 
 class Login extends Component {
@@ -60,6 +62,7 @@ class Login extends Component {
         }).then((result) => {
             //console.log("result: ", result)
             window.localStorage.setItem("token", result.data.token)
+            window.localStorage.setItem("name", result.data.name)
             window.location = "/create"
         })
     }
@@ -84,6 +87,7 @@ class Login extends Component {
                 alert("login successful")
                 let token = randtoken.generate(16);
                 window.localStorage.setItem("token", token)
+                window.localStorage.setItem("name", result.data.name)
 
                 let userInfo = {
                     username: this.state.username,
@@ -91,6 +95,8 @@ class Login extends Component {
                 }
 
                 API.updateUserToken({userInfo})
+                
+                
 
                 window.location = "/create"
 
@@ -102,6 +108,8 @@ class Login extends Component {
             }
 
         })
+
+        
 
 
         // API.saveUser({
@@ -121,7 +129,7 @@ class Login extends Component {
         return (
 
             <div>
-                <NavBar />
+                <NavBar2 />
                 <Card className='container'>
                     <Row>
                         <h5 id='appName'>Listopher Columbus</h5>
