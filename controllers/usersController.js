@@ -45,7 +45,7 @@ module.exports = {
     db.User
       .findOneAndUpdate(
         { token: req.body.cityData.token },
-        { $push: { cities: req.body.cityData } },
+        { $push: { cities: { location: req.body.cityData.location, coordinates: req.body.cityData.coordinates } } },
         { new: true }
       )
       .then(dbModel => {
