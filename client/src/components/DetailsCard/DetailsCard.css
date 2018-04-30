@@ -15,6 +15,7 @@
 }
 .deleteBtn {
     justify-content: right !important;
+    float: right;
 }
 .card-title {
     background-color: rgb(20, 50, 54, .5);
