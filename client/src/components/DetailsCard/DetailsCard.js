@@ -34,7 +34,6 @@ class DetailsCard extends Component {
                                         >
                                             <p>Description: {details.description}</p>
                                             <span className='detailBtns'>
-                                                <Button floating className='green detailBtn' waves='light' icon='edit' />
                                                 <Button onClick={() => this.delPlace(result._id, details._id)} floating className='red detailBtn' waves='light' icon='delete' />
                                             </span>
                                         </Card>

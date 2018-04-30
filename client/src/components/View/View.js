@@ -86,6 +86,11 @@ class View extends Component {
         })
     }
 
+    logOut() {
+        window.localStorage.clear();
+        window.location = "/"
+    }
+
     populateUsers() {
         API.getUsers().then((res) => {
 
@@ -202,7 +207,7 @@ class View extends Component {
                     </NavItem>
                     <NavItem href={"/create"}>Create</NavItem>
                     <NavItem href={"/view"}>View</NavItem>
-                    <NavItem href={"/"}>{this.state.loggedAs}: Log Out</NavItem>
+                    <NavItem onClick={this.logOut} href={"/"}>{this.state.loggedAs}: Log Out</NavItem>
                 </Navbar>
                 <div className='mapContainer'>
                     <div id='map'></div>

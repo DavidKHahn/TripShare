@@ -36,7 +36,9 @@ class Create extends Component {
             isHidden: false,
             token: "",
             username: "",
-            userCitiesData: []
+            userCitiesData: [],
+            loggedAs: ""
+
         }
     }
 
@@ -162,6 +164,19 @@ class Create extends Component {
           .catch(err => console.log(err));
     };
 
+    currentUser() {
+        API.getCurrentUser(userToken).then((res) => {
+
+            console.log("userNAME", res)
+            this.setState({ loggedAs: res.data.username })
+        })
+    }
+
+    logOut() {
+        window.localStorage.clear();
+        window.location = "/"
+    }
+
     componentDidMount() {
 
         // var userToken = window.localStorage.getItem("token") 
@@ -169,6 +184,8 @@ class Create extends Component {
         this.setState({ token: userToken })
         
         this.getUserData()
+
+        this.currentUser()
 
         console.log('component is mounted')
 
@@ -348,7 +365,7 @@ class Create extends Component {
 
         return (
             <div>
-                <NavBar />
+                <NavBar logOut={this.logOut} username={this.state.loggedAs}/>
                 <div className='mapContainer'>
                     <div id='map'></div>
                     {modal}
