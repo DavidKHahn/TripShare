@@ -15,6 +15,7 @@ class DetailsCard extends Component {
     }
 
     render() {
+
         return (
             <div>
                 {this.props.data.map(result => (
@@ -26,9 +27,9 @@ class DetailsCard extends Component {
                                     <span id='placeTitle'>
                                         {result.location}
                                     </span>
-                                    <span className='cityBtns'>
-                                                <Button onClick={() => this.delCity(this.props.token, result._id)} floating className='red detailBtn' waves='light' icon='delete' />
-                                            </span>
+                                    {result.details.length < 1 ? (<span className='cityBtns'>
+        <Button onClick={() => this.delCity(this.props.token, result._id)} floating className='red detailBtn deleteBtn' waves='light' icon='delete' />
+</span>) : ""}                               
                                 </h5>
                             </div>
                             <Row>

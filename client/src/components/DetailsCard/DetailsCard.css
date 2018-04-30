@@ -10,3 +10,7 @@
 #placeTitle {
     margin-left: 75px;
 }
+
+.deleteBtn {
+    justify-content: right !important;
+}
