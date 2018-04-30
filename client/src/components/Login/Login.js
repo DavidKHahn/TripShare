@@ -128,7 +128,7 @@ class Login extends Component {
 
         return (
 
-            <div>
+            <div id="page1">
                 <NavBar2 />
                 <Card className='container'>
                     <Row>
