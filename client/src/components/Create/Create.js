@@ -7,7 +7,7 @@ import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
 import NavBar from "../NavBar";
-import { Card, Row, Col } from 'react-materialize'
+import { Card, Row, Col, Button } from 'react-materialize'
 
 
 const display = {
@@ -326,6 +326,7 @@ class Create extends Component {
         modal.push(
             <div className="modal" style={this.state.toggle ? display : hide} key="modal">
                 <div className="modal-content">
+                    <Button type="button" class="close" onClick={()=> this.toggle()} floating className='closeBtn' icon='close'/>
                     <h4>{this.state.location}</h4>
                     <p>Enter Details</p>
                     <div className="row">
