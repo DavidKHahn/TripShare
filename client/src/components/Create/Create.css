@@ -57,3 +57,8 @@ body {
     background-color: #DCEEF2;
     font-family: sans-serif;
 }
+
+div.card-content {
+    max-height: 500px;
+    background-color: #D8FFC6;
+}
