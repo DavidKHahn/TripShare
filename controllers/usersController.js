@@ -1,4 +1,5 @@
 const db = require("../models");
+const mongoose = require("mongoose");
 
 // Defining methods for the booksController
 module.exports = {
@@ -48,10 +49,21 @@ module.exports = {
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.status(422).json(err));
   },
-  getUsers: function (reg, res) {
+  getUsers: function (req, res) {
     db.User
       .findAll({})
       .then(dbUsers => res.json(dbUsers))
+      .catch(err => res.status(422).json(err));
+  },
+  deletePlace: function(req, res) {
+    console.log(req.body.detailsId)
+    db.User
+      .findOneAndUpdate(
+        { "cities._id": req.body.citiesId },
+        { $pull: { "cities.$.details": { "_id": req.body.detailsId } } }, 
+        { new: true }
+      )
+      .then(dbModel => console.log(JSON.stringify(dbModel)))
       .catch(err => res.status(422).json(err));
   }
   // updateDetail: function(req, res) {

@@ -36,6 +36,9 @@ router.route("/userdata/:id")
 router.route("/api/users")
 .get(usersController.getUsers)
 
+router.route("/api/place")
+.put(usersController.deletePlace)
+
 
 
 

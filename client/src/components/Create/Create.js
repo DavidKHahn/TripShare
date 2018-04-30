@@ -145,6 +145,19 @@ class Create extends Component {
         })
     }
 
+    deletePlace = (citiesId, detailsId) => {
+
+        let id = {
+            citiesId: citiesId,
+            detailsId: detailsId
+        }
+        console.log("CitiesId: ", citiesId)
+        console.log("DetailsId: ", detailsId)
+        API.deletePlace(id)
+          .then(res => this.getUserData())
+          .catch(err => console.log(err));
+    };
+
     componentDidMount() {
 
         // var userToken = window.localStorage.getItem("token") 
@@ -341,7 +354,7 @@ class Create extends Component {
                     {!this.state.isHidden ? "" : <a className="btn addBtn" onClick={this.toggle}>Add Place</a>  }
                 </div>
                 {!this.state.isHidden ? "" : <h4>Selected City: {this.state.location}</h4>}
-                <DetailsCard data={this.state.userCitiesData}/>
+                <DetailsCard data={this.state.userCitiesData} onClick={this.deletePlace}/>
             </div>
         )
     }

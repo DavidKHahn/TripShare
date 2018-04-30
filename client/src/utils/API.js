@@ -33,6 +33,9 @@ export default {
     return axios.put("/api/user", userData)
   },
   getUsers: function() {
-    return axios.get("/api/uers")
+    return axios.get("/api/users")
+  },
+  deletePlace: function(id) {
+    return axios.put("/api/place/", id)
   }
 };
