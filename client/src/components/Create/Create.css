@@ -27,7 +27,7 @@ body { margin:0; padding:0; }
     width: 100% !important;
     margin-left: auto;
     margin-right: auto;
-    height: 45% !important;
+    height: 500px !important;
     border-style: solid;
     margin-top: 70px;
     margin-bottom: 30px;
@@ -36,14 +36,14 @@ body { margin:0; padding:0; }
 
 .mapContainer {
     justify-content: space-between;
-    height: 475px !important;
+    height: 500px !important;
 }
 
 .buttons {
-    margin-top: 275px;
+    margin-top: 100px;
 }
 
-.modal-content {
-    z-index: 1 !important;
+.modal {
+    z-index: 1000;
 }
 

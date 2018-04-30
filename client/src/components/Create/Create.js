@@ -7,6 +7,7 @@ import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from 'mapbox-gl-geocoder'
 import DetailsCard from "../DetailsCard"
 import NavBar from "../NavBar";
+import { Card, Row, Col } from 'react-materialize'
 
 
 const display = {
@@ -74,7 +75,7 @@ class Create extends Component {
 
     // Select Place Button
     handleFormSubmit = event => {
-        console.log(this.state.location, this.state.coordinates);
+        //console.log(this.state.location, this.state.coordinates);
         //changes
         let searchBar = document.getElementsByClassName("mapboxgl-ctrl-geocoder mapboxgl-ctrl");
         searchBar[0].style.display="none";
@@ -90,6 +91,10 @@ class Create extends Component {
         }
 
         let cities = this.state.userCitiesData
+        console.log("cities: ", cities[0].location)
+        console.log("cityData ", cityData.location)
+
+        let match = false;
 
         if (cities.length < 1) {
             API.saveCity({
@@ -97,20 +102,21 @@ class Create extends Component {
             }).then((result) => {
 
             })
-        } else {
+        } 
+        else {
             for (let i=0; i < cities.length; i++ ) {
                 if (cities[i].location === cityData.location) {
                     console.log("match")
+                    match = true;
                     break;
-                } else {
-                    return(
-                        API.saveCity({
-                            cityData
-                        }).then((result) => {
-                
-                        })
-                    )
-                }
+                } 
+            }
+            if (match === false) {
+                API.saveCity({
+                    cityData
+                }).then((result) => {
+                    console.log("saved")
+                })
             }
         }
     };
@@ -152,8 +158,7 @@ class Create extends Component {
             citiesId: citiesId,
             detailsId: detailsId
         }
-        console.log("CitiesId: ", citiesId)
-        console.log("DetailsId: ", detailsId)
+
         API.deletePlace(id)
           .then(res => this.getUserData())
           .catch(err => console.log(err));
@@ -355,7 +360,11 @@ class Create extends Component {
                     {(this.state.location === "") ? null : <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a>}
                     {!this.state.isHidden ? "" : <a className="btn addBtn" onClick={this.toggle}>Add Place</a>  }
                 </div>
-                {!this.state.isHidden ? "" : <h4>Selected City: {this.state.location}</h4>}
+                <Row>
+                    <Col s={12}>
+                        {!this.state.isHidden ? "" : <Card><h4>Selected City: {this.state.location}</h4></Card>}
+                    </Col>
+                </Row>
                 <DetailsCard data={this.state.userCitiesData} onClick={this.deletePlace}/>
             </div>
         )

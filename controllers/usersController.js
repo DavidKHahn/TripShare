@@ -70,7 +70,7 @@ module.exports = {
         { $pull: { "cities.$.details": { "_id": req.body.detailsId } } }, 
         { new: true }
       )
-      .then(dbModel => console.log(JSON.stringify(dbModel)))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
   // updateDetail: function(req, res) {
