@@ -1,14 +1,18 @@
 .brand-logo {
     position: fixed;
     left: 0;
-    text-align: left
+    text-align: left;
+}
 
+#logo {
+    height: 56px;
+    margin: 10px 5px 0px 10px;
 }
 
 .nav-wrapper {
     color: #fff;
     width: 100%;
-    height: 56px;
-    line-height: 56px;
+    height: 75px !important;
+    line-height: 75px;
     background-color: #4D929E;
 }

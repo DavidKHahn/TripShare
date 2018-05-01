@@ -196,7 +196,7 @@ class View extends Component {
         return (
 
             <div>
-                <Navbar brand='TripShare' right>
+                <Navbar brand={<img id="logo" src="uploads/logo.png" />} right>
                     <NavItem>
                         <Input s={2} onChange={this.userSelect} type='select' label="Materialize Select" value={name}>
                             {this.state.userList.map(result =>
