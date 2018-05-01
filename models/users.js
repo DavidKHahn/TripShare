@@ -7,7 +7,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     token: { type: String, required: true },
-    cities: { type: Array, sparse: true, default: [
+    cities: [
         {
             location: { type: String, sparse: true },
             coordinates: { type: Array },
@@ -20,7 +20,7 @@ const userSchema = new Schema({
                 }
             ]
         }
-    ]},
+    ],
 });
 
 const User = mongoose.model("User", userSchema);
