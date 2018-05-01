@@ -26,5 +26,5 @@ Below here we have a few sneak peeks:
 <img width="1440" alt="sixthpage" src="https://user-images.githubusercontent.com/34965292/39463675-0a5803f4-4cce-11e8-985c-38786935be2d.png">
 
 
-
+Made with <3 by Peter Hoang, Alex Rhee, Franky Viray (outside support), and David Hahn.
 
