@@ -393,16 +393,18 @@ class Create extends Component {
                     <div id='map'></div>
                     {modal}
                 </div>
+                <Row>
+                    <Col s={3}></Col>
+                    <Col s={6}>
+                        {!this.state.isHidden ? "" : <Card id="select-card"><h5 id="select-header">SELECTED CITY</h5><h5 id="select-place">{this.state.location}</h5></Card>}
+                    </Col>
+                </Row>
                 <div className="buttons">
                     
                     {(this.state.location === "") ? null : <a className="btn addBtn" onClick={this.handleFormSubmit}>Select City</a>}
                     {!this.state.isHidden ? "" : <a className="btn addBtn" onClick={this.toggle}>Add Place</a>  }
                 </div>
-                <Row>
-                    <Col s={12}>
-                        {!this.state.isHidden ? "" : <Card><h4>Selected City: {this.state.location}</h4></Card>}
-                    </Col>
-                </Row>
+
                 <DetailsCard data={this.state.userCitiesData} token={this.state.token} onClick={this.deletePlace} deleteCity={this.deleteCity}/>
             </div>
             

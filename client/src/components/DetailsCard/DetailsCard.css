@@ -12,10 +12,19 @@
 }
 .description {
     text-align: left;
+    overflow: auto;
+    height: 90px;
+    width: 105%;
+}
+.detailBtns {
+    margin-top: -173px;
+    position: absolute;
+    right: 10px;
 }
 .deleteBtn {
     justify-content: right !important;
     float: right;
+    
 }
 .card-title {
     background-color: rgb(20, 50, 54, .5);

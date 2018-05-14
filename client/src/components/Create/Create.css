@@ -48,7 +48,8 @@ body { margin:0; padding:0; }
 }
 
 .buttons {
-    margin-top: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .modal {
@@ -68,4 +69,18 @@ body {
 
 div.card-content {
     background-color: #D8FFC6;
+}
+
+#select-card .card-content{
+    margin-top: 40px;
+    padding: 0px !important;
+}
+#select-header {
+    background-color: #4D929E;
+    color: white;
+    padding: 10px;
+}
+
+#select-place {
+    padding: 10px;
 }
