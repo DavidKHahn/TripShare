@@ -1,0 +1,47 @@
+.hero {
+    height: 100vh !important;
+    background-image: url(image.jpg);
+    background-size: cover;
+}
+
+.filler {
+    height: 30vh;
+    width: 100vh;
+}
+
+.filler3 {
+    height: 15vh;
+}
+
+.learn {
+    width: 100vh;
+}
+
+.learnFiller {
+    height: 10vh;
+}
+
+.learnHeader {
+    justify-content: center;
+    text-align: center;
+}
+
+.learnList {
+    text-align: left !important;
+}
+
+.bullets {
+    margin-top: 4vh;
+    margin-bottom: 5vh;
+}
+
+.bulletHeader {
+    margin-bottom: 6vh;
+}
+
+#learnSection {
+        background-image: url(mountains.jpg);
+        background-size: cover;
+        color: lemonchiffon;
+
+}
