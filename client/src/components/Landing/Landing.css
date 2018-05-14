@@ -43,5 +43,6 @@
         background-image: url(mountains.jpg);
         background-size: cover;
         color: lemonchiffon;
+        height: 100vh;
 
 }
