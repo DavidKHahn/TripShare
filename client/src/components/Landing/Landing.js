@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./Landing.css";
-import { Button, Row, Card, Col, CardPanel, Modal, Input } from "react-materialize";
+import { Button, Row, Card, Col, CardPanel, Modal, Input, Navbar } from "react-materialize";
 import NavBar2 from "../NavBar2";
 import { Link } from "react-router-dom";
 import randtoken from "rand-token";
 import API from "../../utils/API";
+import NavItem from "react-materialize/lib/NavItem";
 
 
 const display = {
@@ -139,7 +140,19 @@ class Landing extends Component {
         return (
             <div>
                 <div className="hero">
-                    <NavBar2 />
+                    <Navbar brand={<img id="logo" src="uploads/logo.png" />} id="navbar2" right>
+                        <NavItem>
+                            <Modal
+                                header='Log In'
+                                trigger={<Button waves='light'>Log In</Button>}>
+                                <Row>
+                                    <Input onChange={this.handleInputChange} s={12} name="username" type="text" label="Username" />
+                                    <Input onChange={this.handleInputChange} s={12} name="password" type="password" label="Password"  />
+                                    <Button onClick={this.handleSubmitLogin}>Login</Button>
+                                </Row>
+                            </Modal>
+                        </NavItem>
+                    </Navbar>
                     <Row className="filler" />
                     <Row className="filler3">
                         <Col s={12} m={1} />
