@@ -130,7 +130,7 @@ class View extends Component {
             var cityFeature = {
                 type: 'Feature',
                 geometry: {
-                    type: 'Point',
+                    type: 'LineString',
                     coordinates: dat.coordinates
                 },
                 properties: {
@@ -157,6 +157,51 @@ class View extends Component {
                     .setHTML('<p>' + marker.properties.description + '</p>'))
                 .addTo(map);
         });
+
+        var speedFactor = 30; // number of frames per longitude degree
+        var animation; // to store and cancel the animation
+        var startTime = 0;
+        var progress = 0; // progress = timestamp - startTime
+        var resetTime = false; // indicator of whether time reset is needed for the animation
+        
+        map.on('load', () => {
+        
+            console.log("geojson", this.state.geojson)
+
+            let lineCoords = this.state.geojson.features.map( (place) => (
+                place.geometry.coordinates ))
+            
+            console.log("linecoords", lineCoords)
+            // add the line which will be modified in the animation
+            map.addLayer({
+                "id": "route",
+                "type": "line",
+                "source": {
+                    "type": "geojson",
+                    "data": {
+                        "type": "Feature",
+                        "properties": {},
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": lineCoords                            
+                        }
+                    }
+                },
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "#96F550",
+                    "line-width": 3
+                }
+            });
+        
+          
+        });
+
+
+
     }
 
     render() {
@@ -165,7 +210,7 @@ class View extends Component {
             var cityFeature = {
                 type: 'Feature',
                 geometry: {
-                    type: 'Point',
+                    type: 'LineString',
                     coordinates: dat.coordinates
                 },
                 properties: {
