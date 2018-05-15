@@ -405,7 +405,7 @@ class Create extends Component {
                     {!this.state.isHidden ? "" : <a className="btn addBtn" onClick={this.toggle}>Add Place</a>  }
                 </div>
 
-                <DetailsCard data={this.state.userCitiesData} token={this.state.token} onClick={this.deletePlace} deleteCity={this.deleteCity}/>
+                <DetailsCard data={this.state.userCitiesData} token={this.state.token} onClick={this.deletePlace} deleteCity={this.deleteCity} username={this.state.loggedAs}/>
             </div>
             
         )
